@@ -1,4 +1,4 @@
 <?php	
 	session_start();
-	require("View/layout.php");	
+	require("View/ingredients.php");	
 ?>

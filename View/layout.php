@@ -16,5 +16,6 @@
 				</ul>
 			</nav>
 		</header>
+		<?php echo $contenu; ?>
 	</body>
 </html>
