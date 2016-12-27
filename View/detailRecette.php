@@ -1,5 +1,5 @@
 <?php
-	$titre=$results1['Titre'];
+	$titre=$results['Nom'];
 	ob_start();
 	echo '<h1>' . $results['Nom'] .'</h1>';
 
