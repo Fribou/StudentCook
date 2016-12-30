@@ -1,5 +1,5 @@
 <?php
-$titre = "StudentCook";
+$titre = "StudentCook : Connexion";
 ob_start();
 
 //On regarde si l'utilisateur n'est pas déjà connecté
