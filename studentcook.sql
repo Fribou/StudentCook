@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 30 Décembre 2016 à 00:34
+-- Généré le :  Ven 30 Décembre 2016 à 11:21
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -95,6 +95,20 @@ INSERT INTO `recette` (`IDRECETTE`, `NOMRECETTE`, `INGREDIENT1`, `INGREDIENT2`, 
 (7, 'TOMATES AU CHEVRE FRAIS', 'TOMATES', 'CHEVRE', 'POIVRE', NULL, NULL, '4 grosses tomates à chair ferme\r\n2 petits chèvres frais\r\nPoivre\r\n\r\nEvider les tomates et conserver le chapeau. les remplir de chèvre, fermer avec le chapeau de la tomate.\r\nMettre à four moyen une vingtaine de minutes.\r\nServir avec une salade.\r\n\r\n', 25, 'FRANCE'),
 (8, 'OEUFS SOUFFLES AU GRUYERE', 'OEUF', 'GRUYERE', 'SEL', 'POIVRE', NULL, '1 œuf \r\n15 g de gruyère\r\nsel, poivre\r\n\r\nSéparer le blanc et le jaune de l\'œuf. \r\nMettre le blanc dans un bol, ajouter une pincée de sel, et le monter en neige. \r\nUne fois monté, creuser un puits dans le blanc, et glisser le jaune dedans. \r\nRâper le gruyère, et en saupoudrer le tout. Ajouter un peu de poivre moulu. \r\nFaire chauffer au four à 180°C (thermostat 6), jusqu\'à ce que l\'œuf ait quasiment gonflé jusqu\'au bord du bol.\r\n', 15, 'FRANCE'),
 (9, 'OEUF EN BRIOCHE', 'BRIOCHE', 'OEUF', 'LARDON', 'OIGNON', NULL, '1 brioche à tête évidée\r\n1 œuf\r\ngarniture au choix\r\n\r\nPréchauffer le four à 210°C (th 7).\r\nEvider la brioche, réserver la tête. \r\nMettre un peu de garniture au fond : oignons et lardons par exemple. \r\nCasser l\'œuf  dans la brioche, saler et poivrer.\r\nRemettre le chapeau.\r\nMettre au four 15 minutes environ, jusqu\'à ce que l\'œuf soit cuit.', 19, 'FRANCE');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user`
+--
+
+CREATE TABLE `user` (
+  `IDUSER` int(3) NOT NULL,
+  `LOGIN` varchar(20) NOT NULL,
+  `PASS` varchar(20) NOT NULL,
+  `NOM` varchar(20) NOT NULL,
+  `MAIL` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Index pour les tables exportées

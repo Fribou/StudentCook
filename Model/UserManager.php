@@ -12,5 +12,31 @@
     }
 	*/
 	
+	public function setInscription($login, $pass, $nom, $mail)
+	{
+        $sql = 'Insert into User (Login, Pass, Nom, Mail) values (:login, :pass, :nom, :mail)';
+        $req = $this->executerRequete($sql, array('login' => $login, 'pass' => $pass, 'nom' => $nom, 'mail' => $mail));
+        $req->closeCursor();
+		}
+		
+	public function getConnexion($userid)
+	{
+		
+		$sql = 'Select UserID, Pass from User where Login = :identifiant';
+		$req= $this -> executerRequete($sql, array('identifiant' =>	$userid));
+		$results = $req -> fetch(PDO::FETCH_ASSOC);
+		$req -> closeCursor();
+		return $results;
+	}
+	
+	public function getMembre($login)
+	{
+		$sql = 'Select UserID, Nom, Mail from User where Nom = :login';
+		$req = $this->executerRequete($sql, array('login' => $login));
+		$results = $req -> fetch();
+		$req->closeCursor();
+		return $results;
+	}
+	
   }
 ?>
