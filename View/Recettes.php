@@ -17,4 +17,5 @@
 		 </table>
 <?php
 $contenu = ob_get_clean();
-require('layout.php'); ?>
+require('View/layout.php');
+?>
