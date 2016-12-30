@@ -2,9 +2,9 @@
    class RecetteManager extends Model{
 	   
     function getRecette(){
-		$sql='SELECT * FROM recette';
+		$sql='SELECT NOMRECETTE FROM recette';
 		$req = $this -> executerRequete($sql);
-		$results = $req->fetch(PDO::FETCH_ASSOC);
+		$results = $req->fetchAll(PDO::FETCH_ASSOC);
 		return $results;
     }
 	

@@ -2,10 +2,9 @@
    class IngredientManager extends Model{
 	   
     function getIngredient(){
-       $sql='SELECT *
-      FROM ingredient';
+       $sql='SELECT NOMINGREDIENT FROM ingredient';
       $req = $this->executerRequete($sql);
-      $results = $req->fetch(PDO::FETCH_ASSOC);
+      $results = $req->fetchAll(PDO::FETCH_ASSOC);
       return $results;
     }
 	
