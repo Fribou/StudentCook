@@ -1,5 +1,5 @@
 <?php
-	$title='Liste des ingredients';
+	$title='StudentCook : Liste des ingredients';
 	ob_start();
 ?>
 
