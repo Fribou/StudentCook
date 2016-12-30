@@ -8,17 +8,17 @@ echo '<h1>Inscription</h1>';
 
 echo'<p>Pour vous inscrire, veuillez remplir les champs ci dessous:</p>
 	
-<form method="post" action="./studcook.php?action=inscrit">
+<form method="post" action="./studcook.php?action=inscription">
   <fieldset>
 	<legend>Inscription</legend>
 	<p>
-	  <label name="pseudo">Pseudo :</label><input name="pseudo" type="text" />
-	  <label name="password">Mot de Passe :</label><input type="password" name="password"" />
-	  <label name="nom">Nom :</label><input type="nom" name="nom"/>
-	  <label name="mail">Mail :</label><input type="mail" name="mail"" />
+	  <label name="pseudo">Pseudo :</label><input name="identifiant" type="text" placeholder="identifiant">
+	  <label name="password">Mot de Passe :</label><input name="password" type="password" placeholder="password">
+	  <label name="nom">Nom :</label><input name="nom" type="text" placeholder="nom" >
+	  <label name="mail">Mail :</label><input name="mail" type="text" placeholder="mail" >
 	</p>
   </fieldset>
-<p><input type="submit" value="Inscription" /></p></form>';
+<p><input type="submit" value="inscription" /></p></form>';
 	
 if(isset($_GET['donnees'])){
   if($_GET['donnees']=='error'){
