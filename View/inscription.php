@@ -1,12 +1,11 @@
 <?php
-$titre = "Inscription au site";
+$titre = "StudentCook : Inscription";
 ob_start();
-// index.php?action=connexion - movieid=12 - action=voter&movieid=12
-// Model à le droit d'utiliser le contrôleur mais les vues non
 
 echo '<h1>Inscription</h1>';
 
 //On est dans la page de formulaire
+
 echo'<p>Pour vous inscrire, veuillez remplir les champs ci dessous:</p>
 	
 <form method="post" action="./studcook.php?action=inscrit">
@@ -28,6 +27,6 @@ if(isset($_GET['donnees'])){
 }
     
 $contenu = ob_get_clean();
-require('layout.php');
+require('View/layout.php');
 
 ?>

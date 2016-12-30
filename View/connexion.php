@@ -20,6 +20,6 @@ echo '<h1>Connexion</h1>';
     <p><input type="submit" value="Connexion" /></p></form>';     
 
 $contenu = ob_get_clean();
-require('layout.php');
+require('View/layout.php');
 
 ?>

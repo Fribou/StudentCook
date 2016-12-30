@@ -10,5 +10,5 @@
 	echo $results['ingredient5'];
 	
 	$contenu=ob_get_clean();
-	require('layout.php');
+	require('View/layout.php');
 ?>
