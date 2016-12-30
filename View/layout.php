@@ -9,10 +9,10 @@
 			<nav>
 				<ul>
 					<li> <a href="index.php"> Accueil </a> </li>
-					<li> <a> ItemMenu2 </a> </li>
-					<li> <a> ItemMenu3 </a> </li>
-					<li> <a> ItemMenu4 </a> </li>
-					<li> <a> ItemMenu5 </a> </li>
+					<li> <a href="index.php?action=recette"> Mes recettes </a> </li>
+					<li> <a href="index.php?action=ingredient"> Ingredients </a> </li>
+					<li> <a href="index.php?action=inscription"> Inscription </a> </li>
+					<li> <a href="index.php?action=connexion"> Connexion </a> </li>
 				</ul>
 			</nav>
 		</header>

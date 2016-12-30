@@ -58,6 +58,14 @@
 			}
 		}
 	}
+	else if(isset($_GET['action']) && $_GET["action"]=='recette')
+	{	
+		require("View/Recettes.php");
+	}
+	else if(isset($_GET['action']) && $_GET["action"]=='ingredient')
+	{	
+		require("View/ingredients.php");
+	}
 	else
 	{
 		require("View/accueil.php");
