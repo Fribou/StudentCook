@@ -8,7 +8,6 @@
 	<?php		
 		foreach($results as $donnees){
 				echo '<tr>';
-				print_r($donnees);
 				echo '<td>'.$donnees['NOMRECETTE'].'</td>';
 				echo '</tr>';
 			}

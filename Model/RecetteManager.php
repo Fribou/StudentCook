@@ -1,19 +1,19 @@
 <?php
-   class RecetteManager extends Model{
-	   
-    function getRecette(){
-		$sql='SELECT NOMRECETTE FROM recette';
-		$req = $this -> executerRequete($sql);
-		$results = $req->fetchAll(PDO::FETCH_ASSOC);
-		return $results;
-    }
-	
-	/*function getRecetteDétail($ID){
-       $sql='SELECT *
-      FROM RecetteDetails where ID='.$ID;
-      $req = $this->executeRequest($sql);
-      $results = $req->fetch(PDO::FETCH_ASSOC);
-      return $results;
-    }*/
-  }
+	class RecetteManager extends Model
+	{
+		function getRecette(){
+			$sql='SELECT * FROM recette';
+			$req = $this -> executerRequete($sql);
+			$results = $req->fetchAll(PDO::FETCH_ASSOC);
+			return $results;
+		}
+		
+		public function getRecetteDétail($recetteID)
+		{
+			$sql='SELECT DEFINITION from recette where IDRECETTE = :numrecette';
+			$req = $this -> executerRequete($sql,array('numrecette' => $recetteID));
+			$results = $req->fetchAll(PDO::FETCH_ASSOC);
+			return $results;
+		}
+	}
 ?>

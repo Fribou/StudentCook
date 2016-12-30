@@ -85,6 +85,17 @@
 <div class="Gras">Huile</div> 
 
 
+<h1>Liste des Ingrédients</h1>
+
+	<table>
+	<?php		
+		foreach($results as $donnees){
+				echo '<tr>';
+				echo '<td>'.$donnees['NOMINGREDIENT'].'</td>';
+				echo '</tr>';
+			}
+	 ?>
+
 <?php
 	$contenu=ob_get_clean();
 	require('View/layout.php');
