@@ -18,7 +18,7 @@
 
 		private static function getBdd() {
 			if(self::$bdd == null){
-				require './bin/Cinema.php';
+				require './bin/infoBase.php';
 
 				self::$bdd = new PDO('mysql:host='.$host .';dbname='.$nombase ,$user,$password);
 				self::$bdd->exec('SET NAMES utf8');

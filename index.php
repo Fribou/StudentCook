@@ -60,10 +60,12 @@
 	}
 	else if(isset($_GET['action']) && $_GET["action"]=='recette')
 	{	
+		$results= $rm -> getRecette();
 		require("View/Recettes.php");
 	}
 	else if(isset($_GET['action']) && $_GET["action"]=='ingredient')
 	{	
+		$results= $im -> getIngredient();
 		require("View/ingredients.php");
 	}
 	else

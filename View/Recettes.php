@@ -4,12 +4,11 @@
 ?>
 		<h1>Liste des Recettes</h1>
 		
-		
 		<table>
 		<?php		
 			foreach($results as $donnees){
 					echo '<tr>';
-					echo '<td>'.$donnees['Nom'] . '</td>';
+					echo '<td>'.$donnees["NOMRECETTE"] . '</td>';
 					echo '</tr>';
 				}
 				

@@ -4,7 +4,7 @@
     function getIngredient(){
        $sql='SELECT *
       FROM ingredient';
-      $req = $this->executeRequest($sql);
+      $req = $this->executerRequete($sql);
       $results = $req->fetch(PDO::FETCH_ASSOC);
       return $results;
     }
