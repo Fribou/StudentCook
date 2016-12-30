@@ -15,13 +15,12 @@
 		exit(0);
 	}
 	
-	if ($_GET["action"] == 'inscription') 
+	if(isset($_GET['action']) && $_GET["action"] == 'inscription') 
 	{
 		require("View/inscription.php");
 	
 		if (isset($_POST['inscription']))
 		{
-			require("Model/ConnexionManager.php");
 			$identifiant = $_POST['identifiant'];
 			$password = sha1($_POST['password']);
 			$nom = $_POST['nom'];
@@ -38,6 +37,29 @@
 				echo "<p id='erreur'> Une erreur est survenue : Email invalide.</p>";
 		}
 	}
-	
-	require("View/ingredients.php");	
+	else if(isset($_GET['action']) && $_GET["action"]=='connexion')
+	{		
+		require("View/connexion.php");	
+		if(isset($_POST['connexion']))
+		{	
+			$identifiant = $_POST['identifiant'];
+			$password = sha1($_POST['password']);
+			$result = $um -> getConnexion($identifiant);
+			if ($result == NULL)
+				echo "<p id='erreur'> Une erreur est survenue : Identifiant inconnu.</p>";	
+			else if ($result['Pass'] != $password)
+				echo "<p id='erreur'> Une erreur est survenue : Mot de passe incorrect.</p>";	
+			else if($result['Pass'] == $password)
+			{
+				$_SESSION['identifiant']=$identifiant;
+				$_SESSION['UserID'] = $result['UserID'];
+				header ('Location: index.php');
+				exit(0);
+			}
+		}
+	}
+	else
+	{
+		require("View/accueil.php");
+	}
 ?>

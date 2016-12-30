@@ -8,7 +8,7 @@
 		<header>
 			<nav>
 				<ul>
-					<li> <a> ItemMenu1 </a> </li>
+					<li> <a href="index.php"> Accueil </a> </li>
 					<li> <a> ItemMenu2 </a> </li>
 					<li> <a> ItemMenu3 </a> </li>
 					<li> <a> ItemMenu4 </a> </li>

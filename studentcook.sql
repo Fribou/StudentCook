@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 30 Décembre 2016 à 11:21
+-- Généré le :  Ven 30 Décembre 2016 à 18:07
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -103,7 +103,7 @@ INSERT INTO `recette` (`IDRECETTE`, `NOMRECETTE`, `INGREDIENT1`, `INGREDIENT2`, 
 --
 
 CREATE TABLE `user` (
-  `IDUSER` int(3) NOT NULL,
+  `USERID` int(11) DEFAULT NULL,
   `LOGIN` varchar(20) NOT NULL,
   `PASS` varchar(20) NOT NULL,
   `NOM` varchar(20) NOT NULL,
