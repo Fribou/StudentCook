@@ -1,5 +1,5 @@
 <?php
-	$titre='StudentCook : Acueil';
+	$titre='StudentCook : Accueil';
 	ob_start();
 
 	$results['texte'];
