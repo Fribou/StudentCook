@@ -10,7 +10,7 @@
 		
 		public function getRecetteDétail($recetteID)
 		{
-			$sql='SELECT DEFINITION from recette where IDRECETTE = :numrecette';
+			$sql='SELECT DEFINITION from recette where IDRECETTE = :numrecette -1';
 			$req = $this -> executerRequete($sql,array('numrecette' => $recetteID));
 			$results = $req->fetchAll(PDO::FETCH_ASSOC);
 			return $results;

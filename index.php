@@ -63,6 +63,19 @@
 		$results= $rm -> getRecette();
 		require("View/Recettes.php");
 	}
+	else if(isset($_GET['action']) && $_GET["action"]=='recetteid')
+	{
+		if ($_GET['recetteid']=="")
+		{
+			$erreur='Identifiant de recette requis';
+			require("View/error.php");
+		}
+		else
+		{
+			$results = $rm -> getRecetteDétail($_GET['recetteid']);
+			require("View/detailRecette.php");
+		}
+	}
 	else if(isset($_GET['action']) && $_GET["action"]=='ingredient')
 	{	
 		$results= $im -> getIngredient();
