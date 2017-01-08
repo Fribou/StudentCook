@@ -1,6 +1,6 @@
 <?php
    class UserManager extends Model{
-	   
+
    /*
    function getUser($pseudo, $password){
       $sql='SELECT Login, Pass, UserID
@@ -11,24 +11,24 @@
       return $results;
     }
 	*/
-	
+
 	public function setInscription($login, $pass, $nom, $mail)
 	{
         $sql = 'Insert into User (Login, Pass, Nom, Mail) values (:login, :pass, :nom, :mail)';
         $req = $this->executerRequete($sql, array('login' => $login, 'pass' => $pass, 'nom' => $nom, 'mail' => $mail));
         $req->closeCursor();
 		}
-		
+
 	public function getConnexion($userid)
 	{
-		
-		$sql = 'Select UserID, Pass from User where Login = :identifiant';
+
+		$sql = 'Select UserID, Pass, Statut from User where Login = :identifiant';
 		$req= $this -> executerRequete($sql, array('identifiant' =>	$userid));
 		$results = $req -> fetch(PDO::FETCH_ASSOC);
 		$req -> closeCursor();
 		return $results;
 	}
-	
+
 	public function getMembre($login)
 	{
 		$sql = 'Select UserID, Nom, Mail from User where Nom = :login';
@@ -37,6 +37,8 @@
 		$req->closeCursor();
 		return $results;
 	}
-	
+
+
+
   }
 ?>
