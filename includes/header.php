@@ -10,6 +10,7 @@
 					<li> <a href="index.php?action=ingredient"> Ingredients </a> </li>
 					<li> <a href="index.php?action=inscription"> Inscription </a> </li>
 					<li> <a href="index.php?action=connexion"> Connexion </a> </li>
+					<li> <a href="index.php?action=deconnexion"> Deconnexion </a> </li>
 					<?php
 					if(isset($_SESSION['Statut']))
 						if ($_SESSION['Statut']=='Membre')

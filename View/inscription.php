@@ -8,7 +8,7 @@ echo '<h1>Inscription</h1>';
 
 echo'<p>Pour vous inscrire, veuillez remplir les champs ci dessous:</p>
 	
-<form method="post" action="./studcook.php?action=inscription">
+<form method="post" action="./index.php?action=inscription">
   <fieldset>
 	<legend>Inscription</legend>
 	<p>
