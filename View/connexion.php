@@ -1,5 +1,5 @@
 <?php
-$titre = "StudentCook : Connexion";
+$title = "StudentCook : Connexion";
 ob_start();
 
 //On regarde si l'utilisateur n'est pas déjà connecté
@@ -9,7 +9,7 @@ echo '<h1>Connexion</h1>';
 
   echo'<p>Pour vous connecter, veuillez remplir les champs utilisateur et mot de passe suivants:</p>
 
-    <form method="post" action="./studcook.php?action=connecté">
+    <form method="post" action="./index.php?action=connecté">
       <fieldset>
         <legend>Connexion</legend>
         <p>

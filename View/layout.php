@@ -6,25 +6,10 @@
 	</head>
 	<body>
 		<header>
-			<nav>
-				<ul>
-					<li> <a href="index.php"> Accueil </a> </li>
-					<li> <a href="index.php?action=recette"> Mes recettes </a> </li>
-					<li> <a href="index.php?action=ingredient"> Ingredients </a> </li>
-					<li> <a href="index.php?action=inscription"> Inscription </a> </li>
-					<li> <a href="index.php?action=connexion"> Connexion </a> </li>
-					<?php
-						if ($_SESSION['Statut']=='Membre')
-						{
-							<li> <a href="index.php?action=proposer"> Proposer une recette </a> </li>
-						}
-						else if ($_SESSION['Statut']=='Administrateur')
-						{
-							<li> <a href="index.php?action=confirmer"> Confirmer une recette </a> </li>
-						}
-					?>
-				</ul>
-			</nav>
+		 <?php
+      // -------------------------------------- HEADER --------------------------------------
+      include './includes/header.php';
+			?>
 		</header>
 		<?php echo $contenu; ?>
 	</body>

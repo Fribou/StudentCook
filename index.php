@@ -61,9 +61,9 @@
 	else if(isset($_GET['action']) && $_GET["action"]=='recette')
 	{	
 		$results= $rm -> getRecette();
-		require("View/Recettes.php");
+		require("View/Recette.php");
 	}
-	else if(isset($_GET['action']) && $_GET["action"]=='recetteid')
+	else if(isset($_GET['recetteid']))
 	{
 		if ($_GET['recetteid']=="")
 		{
@@ -72,14 +72,14 @@
 		}
 		else
 		{
-			$results = $rm -> getRecetteDétail($_GET['recetteid']);
+			$results = $rm -> getRecetteDetail($_GET['recetteid']);
 			require("View/detailRecette.php");
 		}
 	}
 	else if(isset($_GET['action']) && $_GET["action"]=='ingredient')
 	{	
 		$results= $im -> getIngredient();
-		require("View/ingredients.php");
+		require("View/ingredient.php");
 	}
 	else
 	{

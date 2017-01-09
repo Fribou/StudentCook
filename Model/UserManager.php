@@ -22,8 +22,8 @@
 	public function getConnexion($userid)
 	{
 
-		$sql = 'Select UserID, Pass, Statut from User where Login = :identifiant';
-		$req= $this -> executerRequete($sql, array('identifiant' =>	$userid));
+		$sql = 'Select UserID, Pass, Statut from User where Login = ?';
+		$req= $this -> executerRequete($sql, array($userid));
 		$results = $req -> fetch(PDO::FETCH_ASSOC);
 		$req -> closeCursor();
 		return $results;

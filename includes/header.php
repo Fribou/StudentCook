@@ -1,0 +1,26 @@
+<header class="header-login-signup">
+
+	<div class="header-limiter">
+
+		<h1><a href="./index.php">StudentCook</a></h1>
+			<nav>
+				<ul>
+					<li> <a href="index.php"> Accueil </a> </li>
+					<li> <a href="index.php?action=recette"> Mes recettes </a> </li>
+					<li> <a href="index.php?action=ingredient"> Ingredients </a> </li>
+					<li> <a href="index.php?action=inscription"> Inscription </a> </li>
+					<li> <a href="index.php?action=connexion"> Connexion </a> </li>
+					<?php
+					if(isset($_SESSION['Statut']))
+						if ($_SESSION['Statut']=='Membre')
+						{
+							echo'<li> <a href="index.php?action=proposer"> Proposer une recette </a> </li>';
+						}
+						else if ($_SESSION['Statut']=='Administrateur')
+						{
+							echo'<li> <a href="index.php?action=confirmer"> Confirmer une recette </a> </li>';
+						}
+					?>
+				</ul>
+			</nav>
+		</div>

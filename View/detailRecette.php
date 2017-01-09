@@ -1,13 +1,13 @@
 <?php
-	$titre="StudentCook".$results['Nom'];
+	$title="StudentCook".$results['NOMRECETTE'];
 	ob_start();
-	echo '<h1>' . $results['Nom'] .'</h1>';
+	echo '<h1>' . $results['NOMRECETTE'] .'</h1>';
 
-	echo $results['ingredient1'];
-	echo $results['ingredient2'];
-	echo $results['ingredient3'];
-	echo $results['ingredient4'];
-	echo $results['ingredient5'];
+	echo $results['INGREDIENT1'];
+	echo $results['INGREDIENT2'];
+	echo $results['INGREDIENT3'];
+	echo $results['INGREDIENT4'];
+	echo $results['INGREDIENT5'];
 	
 	$contenu=ob_get_clean();
 	require('View/layout.php');
