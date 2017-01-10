@@ -3,8 +3,17 @@
 	ob_start();
 	
 	if(isset($_SESSION['typeUtilisateur'])&& $_SESSION['typeUtilisateur']=='Admin'){
-		echo '<form method="post" action="./index.php?action="ajoutIngredient">
-		<input value="Ajouter un Ingredient" type="submit"></input></form>';
+		echo '<form method="post" action="./index.php?action=ingredient">
+		<input  name="ajoutIngredient" value="Ajouter un Ingredient" type="submit"></input></form>';
+	}
+	
+	if(isset($_POST['ajoutIngredient'])){
+		echo '<form method="post" action="./index.php?action=ingredient">
+		 <li><label name="AjoutIngredient">Nom Ingredient :</label><input name="Ingredient" type="text"/></li>
+		 <li>Apport calorique : <input type="number" name="apportCal" value="0"  step="0.01"></li>
+		 <li>Prix de lingredient : <input type="number" name="prixIngredient" value="0" step="0.01"></li>
+		 <li><input value="Ajouter" type="submit"></input></form></li>
+		';
 	}
 ?>
 <script type="text/javascript">

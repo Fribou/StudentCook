@@ -81,6 +81,10 @@
 	}
 	else if(isset($_GET['action']) && $_GET["action"]=='ingredient')
 	{	
+		if (isset($_POST['AjoutIngredient'])){
+			$im -> ajoutIngredient($_POST['AjoutIngredient'], $_POST['apportCal'], $_POST['prixIngredient']);
+		}
+		
 		$results= $im -> getIngredient();
 		require("View/ingredient.php");
 	}
