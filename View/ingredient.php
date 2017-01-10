@@ -9,10 +9,10 @@
 	
 	if(isset($_POST['ajoutIngredient'])){
 		echo '<form method="post" action="./index.php?action=ingredient">
-		 <li><label name="AjoutIngredient">Nom Ingredient :</label><input name="Ingredient" type="text"/></li>
+		 <li>Nom Ingredient :</label><input name="Ingredient" type="text"/></li>
 		 <li>Apport calorique : <input type="number" name="apportCal" value="0"  step="0.01"></li>
 		 <li>Prix de lingredient : <input type="number" name="prixIngredient" value="0" step="0.01"></li>
-		 <li><input value="Ajouter" type="submit"></input></form></li>
+		 <li><input name="AjoutIngredient" value="Ajouter" type="submit"></input></form></li>
 		';
 	}
 ?>
@@ -96,18 +96,6 @@
 <div class="Prolai">Emmental</div> 
 <div class="Gras">Beurre</div> 
 <div class="Gras">Huile</div> 
-
-
-<h1>Liste des Ingrédients</h1>
-
-	<table>
-	<?php		
-		foreach($results as $donnees){
-				echo '<tr>';
-				echo '<td>'.$donnees['NOMINGREDIENT'].'</td>';
-				echo '</tr>';
-			}
-	 ?>
 
 <?php
 	$contenu=ob_get_clean();

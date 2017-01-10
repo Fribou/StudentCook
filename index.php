@@ -7,7 +7,7 @@
 	$rm = new RecetteManager();
 	$um = new UserManager();
 	$im = new IngredientManager();
-	
+	$ingredient= array();
 	if(isset($_GET['action'])&& $_GET['action']=='deconnexion')
 	{
 		session_destroy();
@@ -63,6 +63,24 @@
 	}
 	else if(isset($_GET['action']) && $_GET["action"]=='recette')
 	{	
+		if (isset($_POST['AjoutIngredient'])){
+			if(isset($_POST['ingredient1'])){
+				$ingredient[] = $_POST['ingredient1'];
+			}
+			if(isset($_POST['ingredient2'])){
+				$ingredient[] = $_POST['ingredient2'];
+			}
+			if(isset($_POST['ingredient3'])){
+				$ingredient[] = $_POST['ingredient3'];
+			}
+			if(isset($_POST['ingredient4'])){
+				$ingredient[] = $_POST['ingredient4'];
+			}
+			if(isset($_POST['ingredient5'])){
+				$ingredient[] = $_POST['ingredient5'];
+			}
+			$rm -> ajoutRecette($_POST['nomRecette'], $_POST['dureeRecette'], $_POST['Origine'], $_POST['Definition'], $ingredient);
+		}
 		$results= $rm -> getRecette();
 		require("View/Recette.php");
 	}
@@ -82,7 +100,7 @@
 	else if(isset($_GET['action']) && $_GET["action"]=='ingredient')
 	{	
 		if (isset($_POST['AjoutIngredient'])){
-			$im -> ajoutIngredient($_POST['AjoutIngredient'], $_POST['apportCal'], $_POST['prixIngredient']);
+			$im -> ajoutIngredient($_POST['Ingredient'], $_POST['apportCal'], $_POST['prixIngredient']);
 		}
 		
 		$results= $im -> getIngredient();
