@@ -19,7 +19,7 @@
 	{
 		require("View/inscription.php");
 	
-		if (isset($_POST['inscription']))
+		if (isset($_POST['identifiant']))
 		{
 			$identifiant = $_POST['identifiant'];
 			$password = sha1($_POST['password']);
@@ -28,8 +28,10 @@
 			if(filter_var($mail, FILTER_VALIDATE_EMAIL))
 			{
 				$test = $um->getConnexion($identifiant);
-				if ($test == NULL)
+				if ($test == NULL){
 					$result = $um->setInscription($identifiant, $password, $nom, $mail);
+					header ('Location: index.php?action=confirmAjout');
+				}
 				else
 					echo "<p id='erreur'> Une erreur est survenue : Identifiant déjà utilisé.</p>";
 			}

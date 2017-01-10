@@ -14,15 +14,20 @@
 
 	public function setInscription($login, $pass, $nom, $mail)
 	{
-        $sql = 'Insert into User (Login, Pass, Nom, Mail) values (:login, :pass, :nom, :mail)';
-        $req = $this->executerRequete($sql, array('login' => $login, 'pass' => $pass, 'nom' => $nom, 'mail' => $mail));
+		
+		$sql = 'SELECT * FROM User';
+		$req = $this->executerRequete($sql);
+		$id = $req -> fetchAll();
+		$idNouv = count($id) + 1;
+        $sql = 'Insert into User (USERID, Login, Pass, Nom, Mail, typeUtilisateur) values (:idNouv,:login, :pass, :nom, :mail, Membre)';
+        $req = $this->executerRequete($sql, array('idNouv' => $idNouv,'login' => $login, 'pass' => $pass, 'nom' => $nom, 'mail' => $mail));
         $req->closeCursor();
 		}
 
 	public function getConnexion($userid)
 	{
 
-		$sql = 'Select UserID, Pass, Statut from User where Login = ?';
+		$sql = 'Select * from User where Login = ?';
 		$req= $this -> executerRequete($sql, array($userid));
 		$results = $req -> fetch(PDO::FETCH_ASSOC);
 		$req -> closeCursor();

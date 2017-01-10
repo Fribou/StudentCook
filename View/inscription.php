@@ -1,5 +1,5 @@
 <?php
-$titre = "StudentCook : Inscription";
+$title = "StudentCook : Inscription";
 ob_start();
 
 echo '<h1>Inscription</h1>';

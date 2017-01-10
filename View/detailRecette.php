@@ -2,7 +2,7 @@
 	$title="StudentCook".$results['NOMRECETTE'];
 	ob_start();
 	echo '<h1>' . $results['NOMRECETTE'] .'</h1>';
-
+	echo $results['DEFINITION'];
 	echo $results['INGREDIENT1'];
 	echo $results['INGREDIENT2'];
 	echo $results['INGREDIENT3'];
