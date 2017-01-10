@@ -1,8 +1,12 @@
 <?php
 	$title='StudentCook : Liste des ingredients';
 	ob_start();
+	
+	if(isset($_SESSION['typeUtilisateur'])&& $_SESSION['typeUtilisateur']=='Admin'){
+		echo '<form method="post" action="./index.php?action="ajoutIngredient">
+		<input value="Ajouter un Ingredient" type="submit"></input></form>';
+	}
 ?>
-
 <script type="text/javascript">
 	
 	function afficherVPO(etat) 

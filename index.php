@@ -22,7 +22,7 @@
 		if (isset($_POST['identifiant']))
 		{
 			$identifiant = $_POST['identifiant'];
-			$password = sha1($_POST['password']);
+			$password = $_POST['password'];
 			$nom = $_POST['nom'];
 			$mail = $_POST['mail'];
 			if(filter_var($mail, FILTER_VALIDATE_EMAIL))
@@ -42,19 +42,20 @@
 	else if(isset($_GET['action']) && $_GET["action"]=='connexion')
 	{		
 		require("View/connexion.php");	
-		if(isset($_POST['connexion']))
+		if(isset($_POST['pseudo']))
 		{	
-			$identifiant = $_POST['identifiant'];
-			$password = sha1($_POST['password']);
+			$identifiant = $_POST['pseudo'];
+			$password = $_POST['password'];
 			$result = $um -> getConnexion($identifiant);
 			if ($result == NULL)
 				echo "<p id='erreur'> Une erreur est survenue : Identifiant inconnu.</p>";	
-			else if ($result['Pass'] != $password)
+			else if ($result['PASS'] != $password)
 				echo "<p id='erreur'> Une erreur est survenue : Mot de passe incorrect.</p>";	
-			else if($result['Pass'] == $password)
+			else if($result['PASS'] == $password)
 			{
 				$_SESSION['identifiant']=$identifiant;
 				$_SESSION['UserID'] = $result['UserID'];
+				$_SESSION['typeUtilisateur'] = $result['typeUtilisateur'];
 				header ('Location: index.php');
 				exit(0);
 			}

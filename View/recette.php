@@ -6,6 +6,7 @@
 
 	<table>
 	<?php		
+	
 		foreach($results as $donnees){
 				echo '<tr>';
 				echo '<td>'.$donnees['NOMRECETTE'].'</td>';

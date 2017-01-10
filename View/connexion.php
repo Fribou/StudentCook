@@ -9,7 +9,7 @@ echo '<h1>Connexion</h1>';
 
   echo'<p>Pour vous connecter, veuillez remplir les champs utilisateur et mot de passe suivants:</p>
 
-    <form method="post" action="./index.php?action=connecté">
+    <form method="post" action="./index.php?action=connexion">
       <fieldset>
         <legend>Connexion</legend>
         <p>
