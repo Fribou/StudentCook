@@ -48,12 +48,12 @@
 			else
 			{
 				$conditions .=", '".$c."'";
-				$statement .= 'INGREDIENT'.$i;
+				$statement .= ', INGREDIENT'.$i;
 				$i++;
 			}
 			
 		}
-		$sql = 'INSERT INTO Recette (IDRECETTE, NOMRECETTE, INGREDIENT1, INGREDIENT2, INGREDIENT3, INGREDIENT4, INGREDIENT5, DEFINITION, DUREE, ORIGINE) values(?,?,'.$conditions.',?,?,?)';
+		$sql = 'INSERT INTO Recette (IDRECETTE, NOMRECETTE,'.$statement.', DEFINITION, DUREE, ORIGINE) values(?,?,'.$conditions.',?,?,?)';
 		$req = $this -> executerRequete($sql, array($id, $nom, $definition, $duree, $origine));
 
 		}
