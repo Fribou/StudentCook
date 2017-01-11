@@ -1,7 +1,7 @@
 <?php
 	class RecetteProposeManager extends Model
 	{
-		function getRecette(){
+		function getRecettePropose(){
 			$sql='SELECT * FROM RecettePropose';
 			$req = $this -> executerRequete($sql);
 			$results = $req->fetchAll(PDO::FETCH_ASSOC);

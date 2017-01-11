@@ -10,6 +10,8 @@
 	$im = new IngredientManager();
 	$rpm = new RecetteProposeManager();
 	$ingredient= array();
+	
+	//deconnexion de l'utilisateur reviens a page d'acueil
 	if(isset($_GET['action'])&& $_GET['action']=='deconnexion')
 	{
 		session_destroy();
@@ -17,6 +19,8 @@
 		exit(0);
 	}
 	
+	
+	// page inscription, genere la page ou on met les infornmations et aussi ajoute le nouveau utilisateur si y a erreur reviens a la page inscription avec un message d'erreur
 	if(isset($_GET['action']) && $_GET["action"] == 'inscription') 
 	{
 		require("View/inscription.php");
@@ -41,6 +45,8 @@
 				echo "<p id='erreur'> Une erreur est survenue : Email invalide.</p>";
 		}
 	}
+	
+	// page connexion, valide connexion avec creation de valeur session si erreur dans les identifiants renvoi a page connexion avec message d'erreur
 	else if(isset($_GET['action']) && $_GET["action"]=='connexion')
 	{		
 		require("View/connexion.php");	
@@ -64,12 +70,15 @@
 			}
 		}
 	}
+	
+	//page recette affiche toute les recettes disponible
 	else if(isset($_GET['action']) && $_GET["action"]=='recette')
 	{	
+		// si utilisateur a choisi une recette pour sa liste de choix l'increment a un tableau avec tous ces choix
 		if(isset($_GET['incr'])){
 			$_SESSION['arrayRecette'][] = $_GET['incr'];
 		}
-		
+		// ajoute tous les ingredients a un tableau pour faciliter les requetes sql
 		if (isset($_POST['AjoutRecette']) or isset($_POST['ProposerRecette'])){
 			if(isset($_POST['ingredient1'])){
 				$ingredient[] = $_POST['ingredient1'];
@@ -86,14 +95,23 @@
 			if(isset($_POST['ingredient5'])){
 				$ingredient[] = $_POST['ingredient5'];
 			}
+			// pour admin ajoute la recette
 			if(isset($_POST['AjoutRecette']))
 				$rm -> ajoutRecette($_POST['nomRecette'], $_POST['dureeRecette'], $_POST['Origine'], $_POST['Definition'], $ingredient);
+			// pour membre propose une recette a ajouter
 			if(isset($_POST['ProposerRecette']))
 				$rpm -> proposerRecette($_POST['nomRecette'], $_POST['dureeRecette'], $_POST['Origine'], $_POST['Definition'], $ingredient);
 		}
+		// si utilisateurs admin fait la recherche de toutes les recettes proposes puis les affiche dans les pages accueil et page recette
+		if($_SESSION['typeUtilisateur']=='Admin'){
+			$recettePropose = $rpm -> getRecettePropose();
+		}
+		
 		$results= $rm -> getRecette();
 		require("View/Recette.php");
 	}
+	
+	//affiche page recette detail si erreur renvoie a page erreur
 	else if(isset($_GET['recetteid']))
 	{
 		if ($_GET['recetteid']=="")
@@ -107,8 +125,11 @@
 			require("View/detailRecette.php");
 		}
 	}
+	
+	// affiche page ingredient
 	else if(isset($_GET['action']) && $_GET["action"]=='ingredient')
 	{	
+		//ajoute un ingredient
 		if (isset($_POST['AjoutIngredient'])){
 			$im -> ajoutIngredient($_POST['Ingredient'], $_POST['typeIngredient'], $_POST['apportCal'], $_POST['prixIngredient']);
 		}
@@ -118,8 +139,13 @@
 	}
 	else
 	{
+		//vide le tableau avec toutes les recettes de la liste de choix
 		if(isset($_POST['effacerArray'])){
 			$_SESSION['arrayRecette'] = array();
+		}
+		// recupere tous les recettes proposes par des utilisateurs membres
+		if(isset($_SESSION['typeUtilisateur']) and $_SESSION['typeUtilisateur']=='Admin'){
+			$recettePropose = $rpm -> getRecettePropose();
 		}
 		$result = $rm -> getRecette();
 		require("View/accueil.php");
