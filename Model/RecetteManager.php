@@ -30,25 +30,31 @@
 		$i = 2;
 		$first = true;
 		$conditions = '';
+		$statement = '';
+		
+		$sql = 'select * from Recette';
+		$req = $this->executerRequete($sql);
+		$result = $req->fetchAll(PDO::FETCH_ASSOC);
+		$id = count($result)+1;
+		
 		foreach($ingredient as $c)
 		{
-			// si c'est la premiere condition, on met where, sinon on met and
 			if ($first)
 			{
 				$first = false;
-				$conditions .= $c;
+				$conditions .= "'".$c."'";
 				$statement .= 'INGREDIENT1';
 			}
 			else
 			{
-				$conditions .=", ".$c;
+				$conditions .=", '".$c."'";
 				$statement .= 'INGREDIENT'.$i;
 				$i++;
 			}
+			
 		}
-		
-		$sql = 'INSERT INTO Recette (IDRECETTE, NOMRECETTE, INGREDIENT1, INGREDIENT2, INGREDIENT3, INGREDIENT4, INGREDIENT5, DEFINITION, DUREE, ORIGINE) values (?,?,?,?,?,?)';
-		$req = $this -> executerRequete($sql,array($id, $nom, $conditions, $definition, $duree, $origine));
+		$sql = 'INSERT INTO Recette (IDRECETTE, NOMRECETTE, INGREDIENT1, INGREDIENT2, INGREDIENT3, INGREDIENT4, INGREDIENT5, DEFINITION, DUREE, ORIGINE) values(?,?,'.$conditions.',?,?,?)';
+		$req = $this -> executerRequete($sql, array($id, $nom, $definition, $duree, $origine));
 
 		}
 	}

@@ -56,6 +56,7 @@
 				$_SESSION['identifiant']=$identifiant;
 				$_SESSION['UserID'] = $result['UserID'];
 				$_SESSION['typeUtilisateur'] = $result['typeUtilisateur'];
+				$_SESSION['arrayRecette'] = array();
 				header ('Location: index.php');
 				exit(0);
 			}
@@ -63,7 +64,11 @@
 	}
 	else if(isset($_GET['action']) && $_GET["action"]=='recette')
 	{	
-		if (isset($_POST['AjoutIngredient'])){
+		if(isset($_GET['incr'])){
+			$_SESSION['arrayRecette'][] = $_GET['incr'];
+		}
+		
+		if (isset($_POST['AjoutRecette'])){
 			if(isset($_POST['ingredient1'])){
 				$ingredient[] = $_POST['ingredient1'];
 			}
@@ -108,6 +113,7 @@
 	}
 	else
 	{
+		$result = $rm -> getRecette();
 		require("View/accueil.php");
 	}
 ?>

@@ -1,11 +1,6 @@
 <?php
 	$title='StudentCook : Recettes';
 	ob_start();
-?>
-	<h1>Liste des Recettes</h1>
-
-	<table>
-	<?php		
 	if(isset($_SESSION['typeUtilisateur'])&& $_SESSION['typeUtilisateur']=='Admin'){
 		echo '<form method="post" action="./index.php?action=recette">
 		<input  name="ajoutRecette" value="Ajouter une Recette" type="submit"></input></form>';
@@ -25,16 +20,32 @@
 		 <li><input  name= "AjoutRecette" value="Ajouter" type="submit"></input></form></li>
 		';
 	}
+?>
+	<h1>Liste des Recettes</h1>
+
+	<table>
+	<?php	
 		foreach($results as $donnees){
 				echo '<tr>';
 				echo '<td>'.$donnees['NOMRECETTE'].'</td>';
-				echo '<td><a href='.'"index.php?recetteid='.$donnees['IDRECETTE'].'">details de la recette</a></td>';	
+				echo '<td><a href='.'"index.php?recetteid='.$donnees['IDRECETTE'].'">details de la recette</a></td>';
+				echo '<td><a href='.'"index.php?action=recette&incr='.$donnees['IDRECETTE'].'">Ajouter recette a votre liste</a></td>';	
 				echo '</tr>';
 			}
-			
+	
+		
 	 ?>
 	 </table>
 <?php
+
+if(isset($_SESSION['arrayRecette']) && !empty($_SESSION['arrayRecette'])){
+			echo 'Votre liste de recette choisi';
+			foreach($results as $recette){
+				if(in_array($recette['IDRECETTE'], $_SESSION['arrayRecette'])){
+					echo '<li>'.$recette['NOMRECETTE'].'</li>';
+				}
+			}
+		}
 	$contenu = ob_get_clean();
 	require('View/layout.php');
 ?>
