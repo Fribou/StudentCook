@@ -1,7 +1,9 @@
 <?php
 	$title='StudentCook : Recettes';
 	ob_start();
-	
+	$tabOrigine = array();
+	$condition = true;
+	$i = 1;
 	//ajout recette que disponible pour admin
 	if(isset($_SESSION['typeUtilisateur'])&& $_SESSION['typeUtilisateur']=='Admin'){
 		echo '<form method="post" action="./index.php?action=recette">
@@ -30,11 +32,32 @@
 		 if(isset($_POST['proposerRecette']))
 			echo'<li><input  name= "ProposerRecette" value="Proposer" type="submit"></input></form></li>';
 	}
+	
+	//recherche recette
+	echo '	<h2>Recherche des Recettes</h2>
+	
+	<form method="post" action="./index.php?action=recette">
+		 <li>Duree : <input type="number" name="dureeRecette" value="0"></li>
+		 <li>Origine : <select name="Origine"><option value="pas_origine">Selectionner une origine</option></li>';
+				foreach($results as $origine){
+							if(!in_array($origine['ORIGINE'], $tabOrigine)){
+								$tabOrigine[] = $origine['ORIGINE'];
+								echo '<option value="'.$origine['ORIGINE'].'">'.$origine['ORIGINE'].'</option>';
+							}
+						}
+	
+		//echo' <li>Ingredient : <input type="text" name="ingredient1"></li>';
+	
+	
+	
+	
+		echo'<input  name="rechercheRecette" value="Rechercher une Recette" type="submit"></input></form></select>';
 ?>
 	<h1>Liste des Recettes</h1>
 
 	<table>
 	<?php	
+	
 	//affiche liste recette 
 		foreach($results as $donnees){
 				echo '<tr>';
