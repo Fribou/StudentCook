@@ -9,7 +9,14 @@
 	
 	if(isset($_POST['ajoutIngredient'])){
 		echo '<form method="post" action="./index.php?action=ingredient">
-		 <li>Nom Ingredient :</label><input name="Ingredient" type="text"/></li>
+		 <li>Nom Ingredient :<input name="Ingredient" type="text"/></li>
+		 <li>Type ingredient :<select name="typeIngredient">
+							<option value="VPO">Viande, poulet, oeuf</option>
+							<option value="Feculent">Feculent</option>
+							<option value="ProLai">Produit laitier</option>
+							<option value="Gras">Produit gras</option>
+							<option value="LegFru">Legume, Fruit</option>
+							</select>
 		 <li>Apport calorique : <input type="number" name="apportCal" value="0"  step="0.01"></li>
 		 <li>Prix de lingredient : <input type="number" name="prixIngredient" value="0" step="0.01"></li>
 		 <li><input name="AjoutIngredient" value="Ajouter" type="submit"></input></form></li>
@@ -77,7 +84,7 @@
 <h1> Liste des ingredients </h1>
 <p> Tous les ingredients utilises dans les recettes sont ici !</p>
 
-<div class="VPO">Poulet</div> 
+<!--<div class="VPO">Poulet</div> 
 <div class="VPO">Steak hache</div> 
 <div class="VPO">Poisson pane</div> 
 <div class="VPO">Truie</div> 
@@ -96,8 +103,12 @@
 <div class="Prolai">Emmental</div> 
 <div class="Gras">Beurre</div> 
 <div class="Gras">Huile</div> 
-
+--!>
 <?php
+
+	foreach($results as $ingredient){
+		echo '<div class="'.$ingredient['typeIngredient'].'">'.$ingredient['NOMINGREDIENT'].'</div>';
+	}
 	$contenu=ob_get_clean();
 	require('View/layout.php');
 ?>

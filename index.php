@@ -105,7 +105,7 @@
 	else if(isset($_GET['action']) && $_GET["action"]=='ingredient')
 	{	
 		if (isset($_POST['AjoutIngredient'])){
-			$im -> ajoutIngredient($_POST['Ingredient'], $_POST['apportCal'], $_POST['prixIngredient']);
+			$im -> ajoutIngredient($_POST['Ingredient'], $_POST['typeIngredient'], $_POST['apportCal'], $_POST['prixIngredient']);
 		}
 		
 		$results= $im -> getIngredient();
