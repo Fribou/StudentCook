@@ -6,7 +6,12 @@
 		<input  name="ajoutRecette" value="Ajouter une Recette" type="submit"></input></form>';
 	}
 	
-	if(isset($_POST['ajoutRecette'])){
+	if(isset($_SESSION['typeUtilisateur'])&& $_SESSION['typeUtilisateur']=='Membre'){
+		echo '<form method="post" action="./index.php?action=recette">
+		<input  name="proposerRecette" value="Proposer une Recette" type="submit"></input></form>';
+	}
+	
+	if(isset($_POST['ajoutRecette']) or isset($_POST['proposerRecette'])){
 		echo '<form method="post" action="./index.php?action=recette">
 		 <li>Nom Recette :<input name="nomRecette" type="text"/></li>
 		 <li>Ingredient 1 : <input type="text" name="ingredient1"></li>
@@ -16,9 +21,11 @@
 		 <li>Ingredient 5 : <input type="text" name="ingredient5"></li>
 		 <li>Duree : <input type="number" name="dureeRecette" value="0"></li>
 		 <li>Origine : <input type="text" name="Origine"></li>
-		 <li>Definition : <input type="text" name="Definition"></li>
-		 <li><input  name= "AjoutRecette" value="Ajouter" type="submit"></input></form></li>
-		';
+		 <li>Definition : <input type="text" name="Definition"></li>';
+		 if(isset($_POST['ajoutRecette']))
+			echo'<li><input  name= "AjoutRecette" value="Ajouter" type="submit"></input></form></li>';
+		 if(isset($_POST['proposerRecette']))
+			echo'<li><input  name= "ProposerRecette" value="Proposer" type="submit"></input></form></li>';
 	}
 ?>
 	<h1>Liste des Recettes</h1>

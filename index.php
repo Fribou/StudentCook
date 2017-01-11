@@ -2,11 +2,13 @@
 	session_start();
 	require("Model/Model.php");
 	require('Model/RecetteManager.php');
+	require('Model/RecetteProposeManager.php');
 	require('Model/UserManager.php');
 	require('Model/IngredientManager.php');
 	$rm = new RecetteManager();
 	$um = new UserManager();
 	$im = new IngredientManager();
+	$rpm = new RecetteProposeManager();
 	$ingredient= array();
 	if(isset($_GET['action'])&& $_GET['action']=='deconnexion')
 	{
@@ -68,7 +70,7 @@
 			$_SESSION['arrayRecette'][] = $_GET['incr'];
 		}
 		
-		if (isset($_POST['AjoutRecette'])){
+		if (isset($_POST['AjoutRecette']) or isset($_POST['ProposerRecette'])){
 			if(isset($_POST['ingredient1'])){
 				$ingredient[] = $_POST['ingredient1'];
 			}
@@ -84,7 +86,10 @@
 			if(isset($_POST['ingredient5'])){
 				$ingredient[] = $_POST['ingredient5'];
 			}
-			$rm -> ajoutRecette($_POST['nomRecette'], $_POST['dureeRecette'], $_POST['Origine'], $_POST['Definition'], $ingredient);
+			if(isset($_POST['AjoutRecette']))
+				$rm -> ajoutRecette($_POST['nomRecette'], $_POST['dureeRecette'], $_POST['Origine'], $_POST['Definition'], $ingredient);
+			if(isset($_POST['ProposerRecette']))
+				$rpm -> proposerRecette($_POST['nomRecette'], $_POST['dureeRecette'], $_POST['Origine'], $_POST['Definition'], $ingredient);
 		}
 		$results= $rm -> getRecette();
 		require("View/Recette.php");
