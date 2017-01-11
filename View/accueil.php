@@ -11,7 +11,15 @@
 					echo '<li>'.$recette['NOMRECETTE'].'</li>';
 				}
 			}
-		}
+			
+		echo'Pas satisfait de votre liste?
+		<form method="post" action="./index.php">
+		<input  name="effacerArray" value="Effacer liste" type="submit"></input></form>';
+	}
+	else{
+		echo'Votre liste de recette est vide';
+	}
+		
 	
 	
 	$contenu = ob_get_clean();

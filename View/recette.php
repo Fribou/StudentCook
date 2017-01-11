@@ -46,6 +46,9 @@ if(isset($_SESSION['arrayRecette']) && !empty($_SESSION['arrayRecette'])){
 				}
 			}
 		}
+		else{
+		echo'Votre liste de recette est vide';
+	}
 	$contenu = ob_get_clean();
 	require('View/layout.php');
 ?>

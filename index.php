@@ -113,6 +113,9 @@
 	}
 	else
 	{
+		if(isset($_POST['effacerArray'])){
+			$_SESSION['arrayRecette'] = array();
+		}
 		$result = $rm -> getRecette();
 		require("View/accueil.php");
 	}
