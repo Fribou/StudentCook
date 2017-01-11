@@ -103,7 +103,7 @@
 				$rpm -> proposerRecette($_POST['nomRecette'], $_POST['dureeRecette'], $_POST['Origine'], $_POST['Definition'], $ingredient);
 		}
 		// si utilisateurs admin fait la recherche de toutes les recettes proposes puis les affiche dans les pages accueil et page recette
-		if($_SESSION['typeUtilisateur']=='Admin'){
+		if(isset($_SESSION['typeUtilisateurs'])and $_SESSION['typeUtilisateur']=='Admin'){
 			$recettePropose = $rpm -> getRecettePropose();
 		}
 		

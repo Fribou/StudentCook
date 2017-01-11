@@ -1,12 +1,12 @@
 <?php
 	$title='StudentCook : Liste des ingredients';
 	ob_start();
-	
+	//ajout ingredient
 	if(isset($_SESSION['typeUtilisateur'])&& $_SESSION['typeUtilisateur']=='Admin'){
 		echo '<form method="post" action="./index.php?action=ingredient">
 		<input  name="ajoutIngredient" value="Ajouter un Ingredient" type="submit"></input></form>';
 	}
-	
+	//formulaire pour ajout ingredient
 	if(isset($_POST['ajoutIngredient'])){
 		echo '<form method="post" action="./index.php?action=ingredient">
 		 <li>Nom Ingredient :<input name="Ingredient" type="text"/></li>
@@ -22,6 +22,8 @@
 		 <li><input name="AjoutIngredient" value="Ajouter" type="submit"></input></form></li>
 		';
 	}
+	
+	//javascript pour afficher les ingredients et les trier par type d'ingredient
 ?>
 <script type="text/javascript">
 	
@@ -105,7 +107,7 @@
 <div class="Gras">Huile</div> 
 --!>
 <?php
-
+	//affiche les ingredients en fonction de la base de donnee d'ingredient
 	foreach($results as $ingredient){
 		echo '<div class="'.$ingredient['typeIngredient'].'">'.$ingredient['NOMINGREDIENT'].'</div>';
 	}
