@@ -25,7 +25,7 @@
 	
 	//javascript pour afficher les ingredients et les trier par type d'ingredient
 ?>
-<script type="text/javascript">
+<!--<script type="text/javascript">
 	
 	function afficherVPO(etat) 
 	{ 
@@ -72,7 +72,7 @@
 		}
 	}
 	
-</script>
+</script> 
 
 <form name="formulaire" id="formulaire"> 
 	<input type="radio" name="choix" value="All" onclick="afficherVPO('visible');afficherFeculent('visible');afficherLegFru('visible');afficherProLai('visible');afficherGras('visible');" checked> Tous les ingredients 
@@ -81,7 +81,7 @@
 	<input type="radio" name="choix" value="vpo" onclick="afficherVPO('hidden');afficherFeculent('hidden');afficherLegFru('visible');afficherProLai('hidden');afficherGras('hidden');"> Legumes et fruits 
 	<input type="radio" name="choix" value="vpo" onclick="afficherVPO('hidden');afficherFeculent('hidden');afficherLegFru('hidden');afficherProLai('visible');afficherGras('hidden');"> Produits laitiers 
 	<input type="radio" name="choix" value="vpo" onclick="afficherVPO('hidden');afficherFeculent('hidden');afficherLegFru('hidden');afficherProLai('hidden');afficherGras('visible');"> Corps gras 
-</form>
+</form>-->
 
 <h1> Liste des ingredients </h1>
 <p> Tous les ingredients utilises dans les recettes sont ici !</p>
