@@ -1,4 +1,4 @@
-<?php	
+<?php
 	session_start();
 	require("Model/Model.php");
 	require('Model/RecetteManager.php');
@@ -10,7 +10,7 @@
 	$im = new IngredientManager();
 	$rpm = new RecetteProposeManager();
 	$ingredient= array();
-	
+
 	//deconnexion de l'utilisateur reviens a page d'acueil
 	if(isset($_GET['action'])&& $_GET['action']=='deconnexion')
 	{
@@ -18,13 +18,13 @@
 		header ('Location: index.php');
 		exit(0);
 	}
-	
-	
+
+
 	// page inscription, genere la page ou on met les infornmations et aussi ajoute le nouveau utilisateur si y a erreur reviens a la page inscription avec un message d'erreur
-	if(isset($_GET['action']) && $_GET["action"] == 'inscription') 
+	if(isset($_GET['action']) && $_GET["action"] == 'inscription')
 	{
 		require("View/inscription.php");
-	
+
 		if (isset($_POST['identifiant']))
 		{
 			$identifiant = $_POST['identifiant'];
@@ -45,20 +45,20 @@
 				echo "<p id='erreur'> Une erreur est survenue : Email invalide.</p>";
 		}
 	}
-	
+
 	// page connexion, valide connexion avec creation de valeur session si erreur dans les identifiants renvoi a page connexion avec message d'erreur
 	else if(isset($_GET['action']) && $_GET["action"]=='connexion')
-	{		
-		require("View/connexion.php");	
+	{
+		require("View/connexion.php");
 		if(isset($_POST['pseudo']))
-		{	
+		{
 			$identifiant = $_POST['pseudo'];
 			$password = $_POST['password'];
 			$result = $um -> getConnexion($identifiant);
 			if ($result == NULL)
-				echo "<p id='erreur'> Une erreur est survenue : Identifiant inconnu.</p>";	
+				echo "<p id='erreur'> Une erreur est survenue : Identifiant inconnu.</p>";
 			else if ($result['PASS'] != $password)
-				echo "<p id='erreur'> Une erreur est survenue : Mot de passe incorrect.</p>";	
+				echo "<p id='erreur'> Une erreur est survenue : Mot de passe incorrect.</p>";
 			else if($result['PASS'] == $password)
 			{
 				$_SESSION['identifiant']=$identifiant;
@@ -70,10 +70,10 @@
 			}
 		}
 	}
-	
+
 	//page recette affiche toute les recettes disponible
 	else if(isset($_GET['action']) && $_GET["action"]=='recette')
-	{	
+	{
 		// si utilisateur a choisi une recette pour sa liste de choix l'increment a un tableau avec tous ces choix
 		if(isset($_GET['incr'])){
 			$_SESSION['arrayRecette'][] = $_GET['incr'];
@@ -106,11 +106,11 @@
 		if(isset($_SESSION['typeUtilisateurs'])and $_SESSION['typeUtilisateur']=='Admin'){
 			$recettePropose = $rpm -> getRecettePropose();
 		}
-		
+
 		$results= $rm -> getRecette();
 		require("View/Recette.php");
 	}
-	
+
 	//affiche page recette detail si erreur renvoie a page erreur
 	else if(isset($_GET['recetteid']))
 	{
@@ -121,19 +121,20 @@
 		}
 		else
 		{
-			$results = $rm -> getRecetteDetail($_GET['recetteid']);
-			require("View/detailRecette.php");
+			$results= $rm -> getRecette();
+			$result = $rm -> getRecetteDetail($_GET['recetteid']);
+			require("View/Recette.php");
 		}
 	}
-	
+
 	// affiche page ingredient
 	else if(isset($_GET['action']) && $_GET["action"]=='ingredient')
-	{	
+	{
 		//ajoute un ingredient
 		if (isset($_POST['AjoutIngredient'])){
 			$im -> ajoutIngredient($_POST['Ingredient'], $_POST['typeIngredient'], $_POST['apportCal'], $_POST['prixIngredient']);
 		}
-		
+
 		$results= $im -> getIngredient();
 		require("View/ingredient.php");
 	}

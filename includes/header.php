@@ -1,10 +1,10 @@
 <header class="header-login-signup">
 
-	<div class="header-limiter">
+	<div class="jumbotron">
 
 		<h1><a href="./index.php">StudentCook</a></h1>
 			<nav>
-				<ul>
+				<ul class="nav nav-tabs">
 					<li> <a href="index.php"> Accueil </a> </li>
 					<li> <a href="index.php?action=recette"> Mes recettes </a> </li>
 					<li> <a href="index.php?action=ingredient"> Ingredients </a> </li>
