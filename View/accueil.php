@@ -8,26 +8,35 @@
 	
 	//affiche la liste de recette choisi
 	if(isset($_SESSION['arrayRecette']) && !empty($_SESSION['arrayRecette'])){
-			echo 'Votre liste de recette choisi';
+			echo '<div class="texte">Votre liste de recette choisi</div>';
+			echo' <ol class="rounded-list">';
 			foreach($result as $recette){
 				if(in_array($recette['IDRECETTE'], $_SESSION['arrayRecette'])){
-					echo '<li>'.$recette['NOMRECETTE'].'</li>';
+					echo '<li><a href="">'.$recette['NOMRECETTE'].'</a></li>';
 				}
 			}
+			echo'</ol>';
 		// propose d'effacer la liste de choix de recette	
-		echo'Pas satisfait de votre liste?
+		echo'<div class="texte">Pas satisfait de votre liste?</div>
 		<form method="post" action="./index.php">
-		<input  name="effacerArray" value="Effacer liste" type="submit"></input></form>';
+		
+		<div class="hot-container">
+				<p>
+					<input class="btn btn-blue" name="effacerArray" value="Effacer liste" type="submit"></input>
+				</p>
+			</div>';
 	}
 	else{
-		echo'Votre liste de recette est vide<br><br><br>';
+		echo'<div class="texte">Votre liste de recette est vide<br><br><br></div>';
 	}
 	// affiche les recettes proposes par les membres
 	if(isset($recettePropose) and $recettePropose!=Null){
-		echo 'Des utilisateurs ont propose ces recettes, voulez-vous les ajouter au site?';
+		echo '<div class="texte">Des utilisateurs ont propose ces recettes, voulez-vous les ajouter au site?</div>';
+		echo' <ol class="rounded-list">';
 		foreach($recettePropose as $recette){
-			echo '<li>'.$recette['NOMRECETTE'].'</li>';
+			echo '<li><a href="">'.$recette['NOMRECETTE'].'</a></li>';
 		}
+			echo'</ol>';
 	}
 		
 	

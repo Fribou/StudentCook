@@ -110,19 +110,26 @@
 									</div>';
 //affiche la liste de choix de recette
 if(isset($_SESSION['arrayRecette']) && !empty($_SESSION['arrayRecette'])){
-			echo 'Votre liste de recette choisi';
+			echo '<div class="texte">Votre liste de recette choisi</div>';
+			echo' <ol class="rounded-list">';
 			foreach($results as $recette){
 				if(in_array($recette['IDRECETTE'], $_SESSION['arrayRecette'])){
-					echo '<li>'.$recette['NOMRECETTE'].'</li>';
+					echo '<li><a href="">'.$recette['NOMRECETTE'].'</a></li>';
 				}
 			}
+			echo'</ol>';
 			//propose effacement de la liste de choix de recette
-			echo'Pas satisfait de votre liste?
+			echo'<div class="texte">Pas satisfait de votre liste?</div>
 		<form method="post" action="./index.php">
-		<input  name="effacerArray" value="Effacer liste" type="submit"></input></form>';
+		
+		<div class="hot-container">
+				<p>
+					<input class="btn btn-blue" name="effacerArray" value="Effacer liste" type="submit"></input>
+				</p>
+			</div>';
 		}
 		else{
-		echo'Votre liste de recette est vide';
+		echo'<div class="texte">Votre liste de recette est vide</div>';
 	}
 
 

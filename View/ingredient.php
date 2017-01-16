@@ -90,14 +90,13 @@
 
 <h2> Liste des ingredients </h2>
 <p> Tous les ingredients utilises dans les recettes sont ici !</p>
-<div id="list3">
-   <ul>
+   <ol class="rounded-list">
 <?php
 	//affiche les ingredients en fonction de la base de donnee d'ingredient
 	foreach($results as $ingredient){
-		echo '<div class="'.$ingredient['typeIngredient'].'"><li>'.$ingredient['NOMINGREDIENT'].'</li></div>';
+		echo '<div class="'.$ingredient['typeIngredient'].'"><li><a href="">'.$ingredient['NOMINGREDIENT'].'</a></li></div>';
 	}
-	echo'</ul></div></div>';
+	echo'</ol></div>';
 	$contenu=ob_get_clean();
 	require('View/layout.php');
 ?>
