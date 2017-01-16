@@ -11,7 +11,7 @@ echo'<div class="container">
 				<div class="main-login main-center">
 				<h1>Inscription</h1>
 				<p>Pour vous inscrire, veuillez remplir les champs ci dessous:</p>
-					<form class="" method="post" action="#">
+					<form class="" method="post" action="./index.php?action=inscription">
 
 					<div class="form-group">
 						<label for="password" class="cols-sm-2 control-label">Nom</label>
@@ -28,7 +28,7 @@ echo'<div class="container">
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="mail" id="mail"  placeholder="Entrer votre mail"/>
+									<input type="email" class="form-control" name="mail" id="mail"  placeholder="Entrer votre mail"/>
 								</div>
 							</div>
 						</div>
@@ -55,7 +55,7 @@ echo'<div class="container">
 
 
 						<div class="form-group ">
-							<a href="index.php"  type="button" id="button" class="btn btn-primary btn-lg btn-block login-button">Inscription</a>
+							<input  type="submit" value="Inscription" id="button" class="btn btn-primary btn-lg btn-block login-button"/>
 						</div>
 
 					</form>

@@ -14,13 +14,13 @@
 
 	public function setInscription($login, $pass, $nom, $mail)
 	{
-		
+
 		$sql = 'SELECT * FROM User';
 		$req = $this->executerRequete($sql);
 		$id = $req -> fetchAll();
 		$idNouv = count($id) + 1;
-		
-        $sql = 'Insert into User (USERID, Login, Pass, Nom, Mail, typeUtilisateur) values (:idNouv,:login, :pass, :nom, :mail, "Membre")';
+
+        $sql = 'Insert into User (USERID, Login, Pass, Nom, Mail, STATUT) values (:idNouv,:login, :pass, :nom, :mail, "Membre")';
         $req = $this->executerRequete($sql, array('idNouv' => $idNouv,'login' => $login, 'pass' => $pass, 'nom' => $nom, 'mail' => $mail));
         $req->closeCursor();
 		}

@@ -11,14 +11,15 @@ ob_start();
           <div class="row main">
             <div class="main-login main-center">
             <h1>Connexion</h1>
-              <form class="" method="post" action="#">
+            <p>Pour vous connecter, veuillez remplir les champs suivants:</p>
+              <form class="" method="post" action="./index.php?action=connexion">
 
                 <div class="form-group">
                   <label for="username" class="cols-sm-2 control-label">Pseudo</label>
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="pseudo" id="identifiant"  placeholder="Entrer votre pseudo"/>
+                      <input type="text" class="form-control" name="pseudo" id="pseudo"  placeholder="Entrer votre pseudo"/>
                     </div>
                   </div>
                 </div>
@@ -36,7 +37,7 @@ ob_start();
 
 
                 <div class="form-group ">
-                  <a href="index.php"  type="button" id="button" class="btn btn-primary btn-lg btn-block login-button">Connexion</a>
+                  <input  type="submit" value="Connexion" id="button" class="btn btn-primary btn-lg btn-block login-button"/>
                 </div>
 
               </form>
