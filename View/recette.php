@@ -7,7 +7,7 @@
 	//ajout recette que disponible pour admin
 	if(isset($_SESSION['typeUtilisateur']) && $_SESSION['typeUtilisateur']=='Admin'){
 		echo '<form method="post" action="./index.php?action=recette">
-		
+
 			<div class="hot-container">
 				<p>
 					<input class="btn btn-blue" name="ajoutRecette" value="Ajouter une Recette" type="submit"></input>
@@ -16,36 +16,53 @@
 		</form>';
 	}
 	// proposer recette disponible que pour Membre
+
 	if(isset($_SESSION['typeUtilisateur'])&& $_SESSION['typeUtilisateur']=='Membre' && (is_null($_POST['proposeRecette']))){
-		echo '<form method="post" action="./index.php?action=recette">
+		echo '<form method="post" action="./index.php?action=recette#popup2">
 		div
 		<input class="boutonAjout" name="proposerRecette" value="Proposer une Recette" type="submit"></input></form>';
 	}
 
+	echo '<div id="popup2" class="overlay">
+					<div class="popup">
+						<h1>Recette proposée</h1>
+							<a class="close" href="">&times;</a>
+								<div class="content" id="center">';
 	//formulaire pour ajouter recette
-	if(isset($_POST['ajoutRecette']) or isset($_POST['proposerRecette'])){
 		echo '<form method="post" action="./index.php?action=recette">
 		 <li>Nom Recette :<input name="nomRecette" type="text"/></li>
+		 <br />
 		 <li>Ingredient 1 : <input type="text" name="ingredient1"></li>
+		 <br />
 		 <li>Ingredient 2 : <input type="text" name="ingredient2"></li>
+		 <br />
 		 <li>Ingredient 3 : <input type="text" name="ingredient3"></li>
+		 <br />
 		 <li>Ingredient 4 : <input type="text" name="ingredient4"></li>
+		 <br />
 		 <li>Ingredient 5 : <input type="text" name="ingredient5"></li>
+		 <br />
 		 <li>Duree : <input type="number" name="dureeRecette" value="0"></li>
+		 <br />
 		 <li>Origine : <input type="text" name="Origine"></li>
-		 <li>Definition : <input type="text" name="Definition"></li>';
+		 <br />
+		 <li>
+		 Definition :
+		 <textarea ></textarea></p></li>
+		 <br />';
 		 if(isset($_POST['ajoutRecette']))
-			echo'<li><input  name= "AjoutRecette" value="Ajouter" type="submit"></input></form></li>';
+			echo'<li><input  name= "AjoutRecette" class="btn btn-warning" value="Ajouter" type="submit"></input></form></li>';
 		 if(isset($_POST['proposerRecette']))
-			echo'<li><input  name= "ProposerRecette" value="Proposer" type="submit"></input></form></li>';
-	}
-
+			echo'<input  name= "ProposerRecette" class="btn btn-warning" value="Proposer" type="submit"></input></form>';
+	echo '</div>
+	</div>
+	</div>';
 	//recherche recette
 	/*echo '	<h2>Recherche des Recettes</h2>
 
 	<form method="post" action="./index.php?action=recette">
-		 <li>Duree : <input type="number" name="dureeRecette" value="0"></li>
-		 <li>Origine : <select name="Origine"><option value="pas_origine">Selectionner une origine</option></li>';
+		 <li class="white">Duree : <input type="number" name="dureeRecette" value="0"></li>
+		 <li class="white">Origine : <select name="Origine"><option value="pas_origine">Selectionner une origine</option></li>';
 				foreach($results as $origine){
 							if(!in_array($origine['ORIGINE'], $tabOrigine)){
 								$tabOrigine[] = $origine['ORIGINE'];
@@ -58,13 +75,15 @@
 
 
 
+
 		echo'<div class="hot-container">
 				<p>
 					<input class="btn btn-red" name="rechercheRecette" value="Rechercher une Recette" type="submit"></input>
 				</p>
 			</div>
-		
+
 		</form>';
+
 ?>
 	<h1>Liste des Recettes</h1>
 
@@ -95,6 +114,9 @@
 									echo '<br />';
 									echo $result['DEFINITION'];
 									echo '<br />';
+									echo '<br />';
+									echo 'Ingrédients:';
+									echo '<br />';
 									echo $result['INGREDIENT1'];
 									echo '<br />';
 									echo $result['INGREDIENT2'];
@@ -109,20 +131,22 @@
 									</div>
 									</div>';
 //affiche la liste de choix de recette
+echo'<br />';
 if(isset($_SESSION['arrayRecette']) && !empty($_SESSION['arrayRecette'])){
-			echo 'Votre liste de recette choisi';
+			echo '<div class="white">Votre liste de recette choisi</div>';
 			foreach($results as $recette){
 				if(in_array($recette['IDRECETTE'], $_SESSION['arrayRecette'])){
-					echo '<li>'.$recette['NOMRECETTE'].'</li>';
+					echo '<li class="white">'.$recette['NOMRECETTE'].'</li>';
 				}
 			}
 			//propose effacement de la liste de choix de recette
-			echo'Pas satisfait de votre liste?
+			echo'<div class="white">
+			Pas satisfait de votre liste?	</div>
 		<form method="post" action="./index.php">
-		<input  name="effacerArray" value="Effacer liste" type="submit"></input></form>';
+		<input  name="effacerArray" class="btn btn-warning" id="c"  value="Effacer liste" type="submit"></input></form>';
 		}
 		else{
-		echo'Votre liste de recette est vide';
+		echo'<div class="white">Votre liste de recette est vide</div>';
 	}
 
 

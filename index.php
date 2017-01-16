@@ -63,7 +63,7 @@
 			{
 				$_SESSION['identifiant']=$identifiant;
 				$_SESSION['UserID'] = $result['UserID'];
-				$_SESSION['typeUtilisateur'] = $result['typeUtilisateur'];
+				$_SESSION['typeUtilisateur'] = $result['STATUT'];
 				$_SESSION['arrayRecette'] = array();
 				header ('Location: index.php');
 				exit(0);
