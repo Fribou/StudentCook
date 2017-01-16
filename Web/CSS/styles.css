@@ -173,6 +173,11 @@ a {
 	text-align: center;
 }
 
+/* LIST #3 */
+#list3 { }
+#list3 ul { list-style-image: url("../img/carotte.jpg"); color:#eee; font-size:18px; }
+#list3 ul li { line-height:30px; }
+
 /*//////////////////////////////////////// Details recettes  //////////////////////////////////////////*/
 
 
