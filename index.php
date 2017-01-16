@@ -62,7 +62,7 @@
 			else if($result['PASS'] == $password)
 			{
 				$_SESSION['identifiant']=$identifiant;
-				$_SESSION['UserID'] = $result['UserID'];
+				$_SESSION['UserID'] = $result['USERID'];
 				$_SESSION['typeUtilisateur'] = $result['typeUtilisateur'];
 				$_SESSION['arrayRecette'] = array();
 				header ('Location: index.php');

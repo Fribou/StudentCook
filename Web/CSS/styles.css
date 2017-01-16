@@ -32,6 +32,10 @@ li{
   color:black;
 }
 
+.white{
+  color:white;
+}
+
 /*////////////////////////////////////////////////////////// CONNEXION ET INSCRIPTION /////////////////////////////////////////////*/
 
 #playground-container {
@@ -159,9 +163,7 @@ span.input-group-addon i {
   text-shadow: black 0.3em 0.3em 0.3em;
 }
 
-.jumbotron h1{
 
-}
 
 a {
     text-decoration: none;
@@ -231,6 +233,7 @@ ol ol {
     border-radius: 2em;
     transition: all .3s ease-out;
 }
+
 
 /*//////////////////////////////////////// Details recettes  //////////////////////////////////////////*/
 
@@ -322,6 +325,7 @@ ol ol {
   }
 }
 /*////////////////////////////////// Recette ///////////////////////////////////*/
+
 .hot-container p { margin-top: 10px; }
 input { text-decoration: none; margin: 0 10px; }
 
@@ -350,7 +354,7 @@ input.btn {
 		background-color: #e3e3e3;
 		border-color: rgba(0,0,0,0.5);
 	}
-	
+
 	input.btn:active {
 		background-color: #CCC;
 		border-color: rgba(0,0,0,0.9);
@@ -369,13 +373,13 @@ input.btn.btn-blue {
 		background-color: #4F87A2;
 		border-color: rgba(0,0,0,0.5);
 	}
-	
+
 	input.btn.btn-blue:active {
 		background-color: #3C677B;
 		border-color: rgba(0,0,0,0.9);
 	}
 
-	
+
 	/* red button */
 
 input.btn.btn-red {
@@ -389,11 +393,12 @@ input.btn.btn-red {
 		background-color: #DA4F49;
 		border-color: rgba(0,0,0,0.5);
 	}
-	
+
 	input.btn.btn-red:active {
 		background-color: #B32C24;
 		border-color: rgba(0,0,0,0.9);
 	}
+  
 /*//////////////////////////// Table ///////////////////////////*/
 
 .table-fill {

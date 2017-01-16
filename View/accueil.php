@@ -5,7 +5,7 @@
 	if (isset($_GET['action']) && $_GET["action"]=='confirmAjout') {
 		echo 'Votre inscription a été validée, merci de faire partie de notre projet vous pouvez dés a present vous connecter et profitez des fonctionnalités de nos utilisateurs comme enregistrer vos liste de recette.';
 	}
-	
+
 	//affiche la liste de recette choisi
 	if(isset($_SESSION['arrayRecette']) && !empty($_SESSION['arrayRecette'])){
 			echo '<div class="texte">Votre liste de recette choisi</div>';
@@ -15,6 +15,7 @@
 					echo '<li><a href="">'.$recette['NOMRECETTE'].'</a></li>';
 				}
 			}
+
 			echo'</ol>';
 		// propose d'effacer la liste de choix de recette	
 		echo'<div class="texte">Pas satisfait de votre liste?</div>
@@ -25,6 +26,7 @@
 					<input class="btn btn-blue" name="effacerArray" value="Effacer liste" type="submit"></input>
 				</p>
 			</div>';
+
 	}
 	else{
 		echo'<div class="texte">Votre liste de recette est vide<br><br><br></div>';
@@ -38,9 +40,9 @@
 		}
 			echo'</ol>';
 	}
-		
-	
-	
+
+
+
 	$contenu = ob_get_clean();
 	require('layout.php');
 ?>
