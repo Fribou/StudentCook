@@ -11,7 +11,7 @@ ob_start();
           <div class="row main">
             <div class="main-login main-center">
             <h1>Connexion</h1>
-              <form class="" method="post" action="#">
+              <form class="" method="post" action="index.php?action=connexion">
 
                 <div class="form-group">
                   <label for="username" class="cols-sm-2 control-label">Pseudo</label>
@@ -36,7 +36,7 @@ ob_start();
 
 
                 <div class="form-group ">
-                  <a href="index.php"  type="button" id="button" class="btn btn-primary btn-lg btn-block login-button">Connexion</a>
+					<input type="submit" value="SE CONNECTER"  id="button" class="btn btn-primary btn-lg btn-block login-button/></p>
                 </div>
 
               </form>
