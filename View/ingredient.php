@@ -78,7 +78,7 @@
 	}
 
 </script>
-
+<div class="listeIngredient">
 <form name="formulaire" id="formulaire">
 	<input type="radio" name="choix" value="All" onclick="afficherVPO('visible');afficherFeculent('visible');afficherLegFru('visible');afficherProLai('visible');afficherGras('visible');" checked> Tous les ingredients
 	<input type="radio" name="choix" value="vpo" onclick="afficherVPO('visible');afficherFeculent('hidden');afficherLegFru('hidden');afficherProLai('hidden');afficherGras('hidden');"> Viandes, Poissons, Oeufs
@@ -87,7 +87,7 @@
 	<input type="radio" name="choix" value="vpo" onclick="afficherVPO('hidden');afficherFeculent('hidden');afficherLegFru('hidden');afficherProLai('visible');afficherGras('hidden');"> Produits laitiers
 	<input type="radio" name="choix" value="vpo" onclick="afficherVPO('hidden');afficherFeculent('hidden');afficherLegFru('hidden');afficherProLai('hidden');afficherGras('visible');"> Corps gras
 </form>
-<div class="listeIngredient">
+
 <h2> Liste des ingredients </h2>
 <p> Tous les ingredients utilises dans les recettes sont ici !</p>
 

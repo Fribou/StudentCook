@@ -167,8 +167,7 @@ a {
 
 
 /*///////////////////////////////////////////  Ingredient /////////////////////////////////////////////*/
-#listeIngredient{
-	color:blue;
+.listeIngredient{
 	min-height: 100px;
 	width: 100%;
 	text-align: center;
