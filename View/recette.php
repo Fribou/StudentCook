@@ -83,7 +83,7 @@
 			</div>
 
 		</form>';
->>>>>>> origin/master
+
 ?>
 	<h1>Liste des Recettes</h1>
 
