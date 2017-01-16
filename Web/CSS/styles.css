@@ -264,7 +264,7 @@ a {
 }
 /*////////////////////////////////// Recette ///////////////////////////////////*/
 .hot-container p { margin-top: 10px; }
-a { text-decoration: none; margin: 0 10px; }
+input { text-decoration: none; margin: 0 10px; }
 
 .hot-container {
 	min-height: 100px;
