@@ -339,7 +339,7 @@ input.btn.btn-red {
 		background-color: #B32C24;
 		border-color: rgba(0,0,0,0.9);
 	}
-  
+
 /*//////////////////////////// Table ///////////////////////////*/
 
 .table-fill {
@@ -394,7 +394,7 @@ td {
   padding:20px;
   text-align:left;
   vertical-align:middle;
-  font-weight:300;
+  font-weight:299;
   font-size:18px;
   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
   border-right: 1px solid #C1C3D1;
