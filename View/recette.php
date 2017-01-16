@@ -5,14 +5,22 @@
 	$condition = true;
 	$i = 1;
 	//ajout recette que disponible pour admin
-	if(isset($_SESSION['typeUtilisateur'])&& $_SESSION['typeUtilisateur']=='Admin'){
+	if(isset($_SESSION['typeUtilisateur']) && $_SESSION['typeUtilisateur']=='Admin'){
 		echo '<form method="post" action="./index.php?action=recette">
-		<input  name="ajoutRecette" value="Ajouter une Recette" type="submit"></input></form>';
+
+			<div class="hot-container">
+				<p>
+					<input class="btn btn-blue" name="ajoutRecette" value="Ajouter une Recette" type="submit"></input>
+				</p>
+			</div>
+		</form>';
 	}
 	// proposer recette disponible que pour Membre
-	if(isset($_SESSION['typeUtilisateur'])&& $_SESSION['typeUtilisateur']=='Membre'){
+
+	if(isset($_SESSION['typeUtilisateur'])&& $_SESSION['typeUtilisateur']=='Membre' && (is_null($_POST['proposeRecette']))){
 		echo '<form method="post" action="./index.php?action=recette#popup2">
-		<input  name="proposerRecette" class="btn btn-warning" value="Proposer une Recette" type="submit"></input></form>';
+		div
+		<input class="boutonAjout" name="proposerRecette" value="Proposer une Recette" type="submit"></input></form>';
 	}
 
 	echo '<div id="popup2" class="overlay">
@@ -50,7 +58,7 @@
 	</div>
 	</div>';
 	//recherche recette
-	echo '	<h2>Recherche des Recettes</h2>
+	/*echo '	<h2>Recherche des Recettes</h2>
 
 	<form method="post" action="./index.php?action=recette">
 		 <li class="white">Duree : <input type="number" name="dureeRecette" value="0"></li>
@@ -60,14 +68,22 @@
 								$tabOrigine[] = $origine['ORIGINE'];
 								echo '<option value="'.$origine['ORIGINE'].'">'.$origine['ORIGINE'].'</option>';
 							}
-						}
-
+						}*/
+//</select>
 		//echo' <li>Ingredient : <input type="text" name="ingredient1"></li>';
 
 
 
 
-		echo'<br /><input  name="rechercheRecette" class="btn btn-warning" value="Rechercher une Recette" type="submit"></input></form></select>';
+
+		echo'<div class="hot-container">
+				<p>
+					<input class="btn btn-red" name="rechercheRecette" value="Rechercher une Recette" type="submit"></input>
+				</p>
+			</div>
+
+		</form>';
+>>>>>>> origin/master
 ?>
 	<h1>Liste des Recettes</h1>
 

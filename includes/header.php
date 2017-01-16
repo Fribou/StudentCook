@@ -16,8 +16,8 @@
 					?>
 					<li> <a href="index.php?action=deconnexion"> Deconnexion </a> </li>
 					<?php
-					if(isset($_SESSION['identifiant']))
-						echo '<br>'.$_SESSION['identifiant'];
+				/*	if(isset($_SESSION['identifiant']))
+						echo '<br>'.$_SESSION['identifiant'];*/
 					?>
 				</ul>
 			</nav>

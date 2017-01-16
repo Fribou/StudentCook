@@ -14,6 +14,7 @@ ob_start();
             <p>Pour vous connecter, veuillez remplir les champs suivants:</p>
               <form class="" method="post" action="./index.php?action=connexion">
 
+
                 <div class="form-group">
                   <label for="username" class="cols-sm-2 control-label">Pseudo</label>
                   <div class="cols-sm-10">
@@ -33,11 +34,10 @@ ob_start();
                     </div>
                   </div>
                 </div>
-
-
-
+                
                 <div class="form-group ">
                   <input  type="submit" value="Connexion" id="button" class="btn btn-primary btn-lg btn-block login-button"/>
+
                 </div>
 
               </form>
