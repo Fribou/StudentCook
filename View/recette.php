@@ -5,7 +5,7 @@
 	$condition = true;
 	$i = 1;
 	//ajout recette que disponible pour admin
-	if(isset($_SESSION['typeUtilisateur']) && $_SESSION['typeUtilisateur']=='Admin'&& (is_null($_POST['ajoutRecette']))){
+	if(isset($_SESSION['typeUtilisateur']) && $_SESSION['typeUtilisateur']=='Admin' ){
 		echo '<form method="post" action="./index.php?action=recette">
 
 			<div class="hot-container">
@@ -17,7 +17,7 @@
 	}
 	// proposer recette disponible que pour Membre
 
-	if(isset($_SESSION['typeUtilisateur'])&& $_SESSION['typeUtilisateur']=='Membre' && (is_null($_POST['proposeRecette']))){
+	if(isset($_SESSION['typeUtilisateur'])&& $_SESSION['typeUtilisateur']=='Membre' ){
 		echo '<form method="post" action="./index.php?action=recette">
 		<div class="hot-container">
 				<p>
