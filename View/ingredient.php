@@ -94,7 +94,7 @@
 <?php
 	//affiche les ingredients en fonction de la base de donnee d'ingredient
 	foreach($results as $ingredient){
-		echo '<div class="'.$ingredient['typeIngredient'].'">'.$ingredient['NOMINGREDIENT'].'</div>';
+		echo '<div class="'.$ingredient['typeIngredient'].'"><li>'.$ingredient['NOMINGREDIENT'].'</li></div>';
 	}
 	echo'</div>';
 	$contenu=ob_get_clean();
