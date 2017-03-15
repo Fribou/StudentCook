@@ -110,7 +110,9 @@
 		$results= $rm -> getRecette();
 		require("View/Recette.php");
 	}
-
+	else if(isset($_GET['action']) && $_GET["action"]=='forum'){
+		require("View/Forum.php");
+	}
 	//affiche page recette detail si erreur renvoie a page erreur
 	else if(isset($_GET['recetteid']))
 	{
