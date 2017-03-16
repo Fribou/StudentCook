@@ -3,18 +3,29 @@
 	ob_start();
 	//inscription au site valider
 	if (isset($_GET['action']) && $_GET["action"]=='confirmAjout') {
-		echo 'Votre inscription a été validée, merci de faire partie de notre projet vous pouvez dés a present vous connecter et profitez des fonctionnalités de nos utilisateurs comme enregistrer vos liste de recette.';
+		echo '<h3>Votre inscription a été validée, merci de faire partie de notre projet vous pouvez dés a present vous connecter et profitez des fonctionnalités de nos utilisateurs comme enregistrer vos liste de recette.</h3>';
 	}
 
 	//affiche la liste de recette choisi
 	if(isset($_SESSION['arrayRecette']) && !empty($_SESSION['arrayRecette'])){
 			echo '<div class="texte">Votre liste de recette choisi</div>';
-			echo' <ol class="rounded-list">';
+			//echo' <ol class="rounded-list">';
+			echo'<table class="table-fill">
+			<tbody class="table-hover">';
 			foreach($result as $recette){
 				if(in_array($recette['IDRECETTE'], $_SESSION['arrayRecette'])){
-					echo '<li><a href="">'.$recette['NOMRECETTE'].'</a></li>';
+					echo '<tr>';
+					echo '
+					<form action="index.php#popup1" method="post">
+					  <td>'.$recette['NOMRECETTE'].'</td>
+					  <td><button type="submit" name="detailPropose" value="'.$recette['IDRECETTE'].'">Detail de la recette</button></td>
+					</form>
+					';
+					echo '</tr>';
 				}
 			}
+			echo'</tbody>
+		</table>';
 
 			echo'</ol>';
 		// propose d'effacer la liste de choix de recette	
@@ -29,16 +40,58 @@
 
 	}
 	else{
+		if (!isset($_GET['action']))
 		echo'<div class="texte">Votre liste de recette est vide<br><br><br></div>';
 	}
 	// affiche les recettes proposes par les membres
 	if(isset($recettePropose) and $recettePropose!=Null){
 		echo '<div class="texte">Des utilisateurs ont propose ces recettes, voulez-vous les ajouter au site?</div>';
-		echo' <ol class="rounded-list">';
+		//echo' <ol class="rounded-list">';
+		echo'<table class="table-fill">';
+		
 		foreach($recettePropose as $recette){
-			echo '<li><a href="">'.$recette['NOMRECETTE'].'</a></li>';
+			echo '<tr>';
+			echo '
+			<form action="index.php" method="post">
+			  <td>'.$recette['NOMRECETTE'].'</td>
+			  <td><a href='.'"index.php?recetteid='.$recette['IDRECETTE'].'#popup1">details de la recette</a></td>
+			  <td><button type="submit" name="ajoutRecettePropose" value="'.$recette['IDRECETTE'].'">Ajouter</button></td>
+			  <td><button type="submit" name="effacerRecettePropose" value ="'.$recette['IDRECETTE'].'">X</button></td>
+		</form>
+			';
+			echo '</tr>';
 		}
-			echo'</ol>';
+		echo'
+		</table>';
+			echo '	 <div id="popup1" class="overlay">
+						<div class="popup">
+							<h1>Détails de la recette</h1>
+								<a class="close" href="">&times;</a>
+									<div class="content" id="center">';
+
+									echo '<h1>' . $detailPropose['NOMRECETTE'] .'</h1>';
+									echo '<br />';
+									echo $detailPropose['DEFINITION'];
+									echo '<br />';
+									echo '<br />';
+									echo 'Ingrédients:';
+									echo '<br />';
+									echo $detailPropose['INGREDIENT1'];
+									echo '<br />';
+									echo $detailPropose['INGREDIENT2'];
+									echo '<br />';
+									echo $detailPropose['INGREDIENT3'];
+									echo '<br />';
+									echo $detailPropose['INGREDIENT4'];
+									echo '<br />';
+									echo $detailPropose['INGREDIENT5'];
+
+									echo'</div>
+									</div>
+									</div>';
+	}
+	else{
+		echo'<div class="texte"> Pas de propositions de recettes en cours</div>';
 	}
 
 

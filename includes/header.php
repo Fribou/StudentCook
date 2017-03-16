@@ -10,6 +10,7 @@
 					<li> <a href="index.php?action=ingredient"> Ingredients </a> </li>
 					<li> <a href="index.php?action=forum"> Forum </a> </li>
 
+
 					<?php
 						if(!isset($_SESSION['identifiant'])){
 							echo '
@@ -20,7 +21,8 @@
 					echo '<li> <a href="index.php?action=deconnexion"> Deconnexion </a> </li>';
 				}
 				?>
-					<?php
+
+
 				/*	if(isset($_SESSION['identifiant']))
 						echo '<br>'.$_SESSION['identifiant'];*/
 					?>

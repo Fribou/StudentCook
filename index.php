@@ -65,14 +65,14 @@
 			{
 				$_SESSION['identifiant']=$identifiant;
 				$_SESSION['UserID'] = $result['USERID'];
-				$_SESSION['typeUtilisateur'] = $result['typeUtilisateur'];
+				$_SESSION['typeUtilisateur'] = $result['STATUT'];
 				$_SESSION['arrayRecette'] = array();
 				header ('Location: index.php');
 				exit(0);
 			}
 		}
 	}
-
+	
 	//page recette affiche toute les recettes disponible
 	else if(isset($_GET['action']) && $_GET["action"]=='recette')
 	{
@@ -97,16 +97,70 @@
 			if(isset($_POST['ingredient5'])){
 				$ingredient[] = $_POST['ingredient5'];
 			}
+			
+			$target_dir = "Web/img/";
+			$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+			$uploadOk = 1;
+			$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+			// Verifie si cest une image ou un fake
+			if(isset($_POST["AjoutRecette"]) || isset($_POST["ProposerRecette"])) {
+				$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+				if($check !== false) {
+					echo "File is an image - " . $check["mime"] . ".";
+					echo $target_file;
+					$uploadOk = 1;
+				} else {
+					echo "File is not an image.";
+					$uploadOk = 0;
+				}
+			}
+			//Verifie si image existe deja
+				if (file_exists($target_file)) {
+					echo "Sorry, file already exists.";
+					$uploadOk = 0;
+				}
+				// ¨Permet que quelque format d'image
+				if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+				&& $imageFileType != "gif" ) {
+					echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+					$uploadOk = 0;
+				}
+				// verifie uploadOK
+				if ($uploadOk == 0) {
+					echo "Sorry, your file was not uploaded.";
+				// SI tout marche upload image
+				} else {
+					move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+				}
+			
 			// pour admin ajoute la recette
 			if(isset($_POST['AjoutRecette']))
-				$rm -> ajoutRecette($_POST['nomRecette'], $_POST['dureeRecette'], $_POST['Origine'], $_POST['Definition'], $ingredient);
+				$rm -> ajoutRecette($_POST['nomRecette'], $_POST['dureeRecette'], $_POST['Origine'], $_POST['Definition'], $ingredient, $target_file);
 			// pour membre propose une recette a ajouter
 			if(isset($_POST['ProposerRecette']))
-				$rpm -> proposerRecette($_POST['nomRecette'], $_POST['dureeRecette'], $_POST['Origine'], $_POST['Definition'], $ingredient);
+				$rpm -> proposerRecette($_POST['nomRecette'], $_POST['dureeRecette'], $_POST['Origine'], $_POST['Definition'], $ingredient, $target_file);
 		}
 		// si utilisateurs admin fait la recherche de toutes les recettes proposes puis les affiche dans les pages accueil et page recette
 		if(isset($_SESSION['typeUtilisateurs'])and $_SESSION['typeUtilisateur']=='Admin'){
 			$recettePropose = $rpm -> getRecettePropose();
+		}
+		
+	    if(isset($_POST['effacerRecette'])){
+			$rm -> effacerRecette($_POST['effacerRecette']);
+		}
+		
+		if(isset($_GET['recetteid']))
+		{
+			if ($_GET['recetteid']=="")
+			{
+				$erreur='Identifiant de recette requis';
+				require("View/error.php");
+			}
+			else if(isset($_GET['recetteid']))
+			{
+				
+				$result = $rm -> getRecetteDetail($_GET['recetteid']);
+			}
 		}
 
 		$results= $rm -> getRecette();
@@ -117,21 +171,29 @@
 		require("View/Forum.php");
 	}
 	//affiche page recette detail si erreur renvoie a page erreur
-	else if(isset($_GET['recetteid']))
+	/*else if(isset($_GET['recetteid']))
 	{
 		if ($_GET['recetteid']=="")
 		{
 			$erreur='Identifiant de recette requis';
 			require("View/error.php");
 		}
-		else
+		else if(isset($_GET['recetteid']))
 		{
 			$results= $rm -> getRecette();
 			$result = $rm -> getRecetteDetail($_GET['recetteid']);
 			require("View/Recette.php");
 		}
+	}*/
+	// Affiche page  ajout recette
+	else if(isset($_GET['action']) && $_GET["action"]=='AjoutRecette'){
+		$results = $im -> getIngredient();
+		require("View/AjoutRecette.php");
 	}
-
+	else if(isset($_GET['action']) && $_GET["action"]=='ProposeRecette'){
+		$results = $im -> getIngredient();
+		require("View/AjoutRecette.php");
+	}
 	// affiche page ingredient
 	else if(isset($_GET['action']) && $_GET["action"]=='ingredient')
 	{
@@ -145,6 +207,14 @@
 	}
 	else
 	{
+		//ajout recette propose
+		if(isset($_POST['ajoutRecettePropose'])){
+			$rm -> ajoutRecettePropose($_POST['ajoutRecettePropose']);
+			$rpm -> effacerRecettePropose($_POST['ajoutRecettePropose']);
+		}
+		else if(isset($_POST['effacerRecettePropose'])){
+			$rpm -> effacerRecettePropose($_POST['effacerRecettePropose']);
+		}
 		//vide le tableau avec toutes les recettes de la liste de choix
 		if(isset($_POST['effacerArray'])){
 			$_SESSION['arrayRecette'] = array();
@@ -152,6 +222,9 @@
 		// recupere tous les recettes proposes par des utilisateurs membres
 		if(isset($_SESSION['typeUtilisateur']) and $_SESSION['typeUtilisateur']=='Admin'){
 			$recettePropose = $rpm -> getRecettePropose();
+			if(isset($_GET['recetteid'])){
+				$detailPropose = $rpm -> getRecetteProposeID($_GET['recetteid']);
+			}
 		}
 		$result = $rm -> getRecette();
 		require("View/accueil.php");
