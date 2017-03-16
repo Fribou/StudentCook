@@ -8,10 +8,11 @@
 					<li> <a href="index.php"> Accueil </a> </li>
 					<li> <a href="index.php?action=recette"> Mes recettes </a> </li>
 					<li> <a href="index.php?action=ingredient"> Ingredients </a> </li>
+					<li> <a href="index.php?action=inscription"> Inscription </a> </li>
+					<li> <a href="index.php?action=connexion"> Connexion </a> </li>
 					<?php
 						if(!isset($_SESSION['identifiant'])){
-							echo '<li> <a href="index.php?action=inscription"> Inscription </a> </li>
-						<li> <a href="index.php?action=connexion"> Connexion </a> </li>';
+							echo '<li> <a href="index.php?action=forum"> Forum </a> </li>';
 						}
 					?>
 					<li> <a href=""> Forum </a> </li>
