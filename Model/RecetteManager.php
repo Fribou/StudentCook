@@ -15,7 +15,12 @@
 			$results = $req->fetch(PDO::FETCH_ASSOC);
 			return $results;
 		}
-
+		
+		function effacerRecette($id){
+			$sql='DELETE FROM Recette WHERE IDRECETTE = ?';
+			$req = $this -> executerRequete($sql, array($id));
+		}
+		
 		public function getValidation()
 		{
 			$sql='SELECT Nomrecette, Ingredient1, Ingredient2, Ingredient3, Ingredient4, Ingredient5, Definition from Recette where Valider= False';
@@ -32,10 +37,6 @@
 		$conditions = '';
 		$statement = '';
 		
-		$sql = 'select * from Recette';
-		$req = $this->executerRequete($sql);
-		$result = $req->fetchAll(PDO::FETCH_ASSOC);
-		$id = count($result)+1;
 		
 		foreach($ingredient as $c)
 		{
@@ -53,9 +54,24 @@
 			}
 			
 		}
-		$sql = 'INSERT INTO Recette (IDRECETTE, NOMRECETTE,'.$statement.', DEFINITION, DUREE, ORIGINE) values(?,?,'.$conditions.',?,?,?)';
-		$req = $this -> executerRequete($sql, array($id, $nom, $definition, $duree, $origine));
+		$sql = 'INSERT INTO Recette (NOMRECETTE,'.$statement.', DEFINITION, DUREE, ORIGINE) values(?,'.$conditions.',?,?,?)';
+		$req = $this -> executerRequete($sql, array( $nom, $definition, $duree, $origine));
 
+		}
+		
+		public function ajoutRecettePropose($idrecette){
+			$sql='SELECT * FROM RecettePropose WHERE IDRECETTE = ?';
+			$req = $this -> executerRequete($sql, array($idrecette));
+			$recette = $req->fetch(PDO::FETCH_ASSOC);
+			
+		$sql = 'select * from Recette';
+		$req = $this->executerRequete($sql);
+		$result = $req->fetchAll(PDO::FETCH_ASSOC);
+		$id = count($result)+1;
+			
+		$sql = 'INSERT INTO Recette (IDRECETTE, NOMRECETTE,INGREDIENT1, INGREDIENT2, INGREDIENT3, INGREDIENT4, INGREDIENT5, DEFINITION, DUREE, ORIGINE) values(?,?,?,?,?,?,?,?,?,?)';
+		$req = $this -> executerRequete($sql, array($id, $recette['NOMRECETTE'], $recette['INGREDIENT1'], $recette['INGREDIENT2'], $recette['INGREDIENT3'], $recette['INGREDIENT4'], $recette['INGREDIENT5'], $recette['DEFINITION'], $recette['DUREE'], $recette['ORIGINE']));
+			
 		}
 	}
 ?>

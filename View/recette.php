@@ -6,7 +6,7 @@
 	$i = 1;
 	//ajout recette que disponible pour admin
 	if(isset($_SESSION['typeUtilisateur']) && $_SESSION['typeUtilisateur']=='Admin' ){
-		echo '<form method="post" action="./index.php?action=recette">
+		echo '<form method="post" action="./index.php?action=AjoutRecette">
 
 			<div class="hot-container">
 				<p>
@@ -18,41 +18,20 @@
 	// proposer recette disponible que pour Membre
 
 	if(isset($_SESSION['typeUtilisateur'])&& $_SESSION['typeUtilisateur']=='Membre' ){
-		echo '<form method="post" action="./index.php?action=recette">
+		echo '<form method="post" action="./index.php?action=ProposeRecette">
 		<div class="hot-container">
 				<p>
-					<input class="btn btn-blue" name="proposerRecette" value="Ajouter une Recette" type="submit"></input>
+					<input class="btn btn-blue" name="proposerRecette" value="Proposer une Recette" type="submit"></input>
 				</p>
 			</div></form>';
 	}
 
-	//formulaire pour ajouter recette
-	if(isset($_POST['proposerRecette']) or isset($_POST['ajoutRecette']))
-		echo '<form method="post" action="./index.php?action=recette">
-		 <li>Nom Recette :<input name="nomRecette" type="text"/></li>
-		 <br />
-		 <li>Ingredient 1 : <input type="text" name="ingredient1"></li>
-		 <br />
-		 <li>Ingredient 2 : <input type="text" name="ingredient2"></li>
-		 <br />
-		 <li>Ingredient 3 : <input type="text" name="ingredient3"></li>
-		 <br />
-		 <li>Ingredient 4 : <input type="text" name="ingredient4"></li>
-		 <br />
-		 <li>Ingredient 5 : <input type="text" name="ingredient5"></li>
-		 <br />
-		 <li>Duree : <input type="number" name="dureeRecette" value="0"></li>
-		 <br />
-		 <li>Origine : <input type="text" name="Origine"></li>
-		 <br />
-		 <li>
-		 Definition :
-		 <textarea ></textarea></p></li>
-		 <br />';
-		 if(isset($_POST['ajoutRecette']))
+		 
+		 /*if(isset($_POST['ajoutRecette']))
 			echo'<li><input  name= "AjoutRecette" value="Ajouter" type="submit"></input></form></li>';
 		 if(isset($_POST['proposerRecette']))
-			echo'<input  name= "ProposerRecette" value="Proposer" type="submit"></input></form>';
+			echo'<input  name= "ProposerRecette" value="Proposer" type="submit"></input></form>';*/
+	
 	//recherche recette
 	/*echo '	<h2>Recherche des Recettes</h2>
 
@@ -72,13 +51,13 @@
 
 
 
-		echo'<div class="hot-container">
+		/*echo'<div class="hot-container">
 				<p>
 					<input class="btn btn-red" name="rechercheRecette" value="Rechercher une Recette" type="submit"></input>
 				</p>
 			</div>
 
-		</form>';
+		</form>';*/
 
 ?>
 	<h1>Liste des Recettes</h1>
@@ -90,8 +69,10 @@
 		foreach($results as $donnees){
 				echo '<tr>';
 				echo '<td>'.$donnees['NOMRECETTE'].'</td>';
-				echo '<td><a href='.'"index.php?recetteid='.$donnees['IDRECETTE'].'#popup1">details de la recette</a></td>';
+				echo '<td><a href='.'"index.php?action=recette&recetteid='.$donnees['IDRECETTE'].'#popup1">details de la recette</a></td>';
 				echo '<td><a href='.'"index.php?action=recette&incr='.$donnees['IDRECETTE'].'">Ajouter recette a votre liste</a></td>';
+				echo'<form action="index.php?action=recette" method="post">';
+				echo'<td><button type="submit" name="effacerRecette" value ="'.$donnees['IDRECETTE'].'">X</button></form></td>';
 				echo '</tr>';
 			}
 
@@ -108,6 +89,7 @@
 
 									echo '<h1>' . $result['NOMRECETTE'] .'</h1>';
 									echo '<br />';
+									//echo '<img src="./Web/img/tortilla.jpg" alt="tortilla" width="300" /><br />';
 									echo $result['DEFINITION'];
 									echo '<br />';
 									echo '<br />';
