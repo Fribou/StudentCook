@@ -61,10 +61,8 @@
 
 ?>
 	<h1>Liste des Recettes</h1>
-
-	<table>
 	<?php
-
+	echo '<table class="table-fill">';
 	//affiche liste recette
 		foreach($results as $donnees){
 				echo '<tr>';

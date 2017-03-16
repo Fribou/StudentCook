@@ -47,8 +47,7 @@
 	if(isset($recettePropose) and $recettePropose!=Null){
 		echo '<div class="texte">Des utilisateurs ont propose ces recettes, voulez-vous les ajouter au site?</div>';
 		//echo' <ol class="rounded-list">';
-		echo'<table class="table-fill">
-		<tbody class="table-hover">';
+		echo'<table class="table-fill">';
 		
 		foreach($recettePropose as $recette){
 			echo '<tr>';
@@ -62,7 +61,7 @@
 			';
 			echo '</tr>';
 		}
-		echo'</tbody>
+		echo'
 		</table>';
 			echo '	 <div id="popup1" class="overlay">
 						<div class="popup">
@@ -90,6 +89,9 @@
 									echo'</div>
 									</div>
 									</div>';
+	}
+	else{
+		echo'<div class="texte"> Pas de propositions de recettes en cours</div>';
 	}
 
 

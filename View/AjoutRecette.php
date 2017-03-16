@@ -12,7 +12,10 @@
 		<p id="failure">Oopsie...message not sent.</p>  
 		<p id="success">Your message was sent successfully. Thank you!</p>
 
-		   <form method="post" action="index.php?action=recette">
+		   <form method="post" action="index.php?action=recette"  enctype="multipart/form-data">
+		   <div>
+				<input type="file" name="fileToUpload" id="fileToUpload"   required="required" autofocus="autofocus">
+		   </div>
 			<div>
 		      <label for="name">
 		      	<span class="required">Nom Recette: *</span> 

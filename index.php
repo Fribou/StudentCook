@@ -95,6 +95,25 @@
 			if(isset($_POST['ingredient5'])){
 				$ingredient[] = $_POST['ingredient5'];
 			}
+			
+			$target_dir = "Web/img/";
+			$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+			$uploadOk = 1;
+			$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+			// Check if image file is a actual image or fake image
+			if(isset($_POST["AjoutRecette"]) || isset($_POST["ProposerRecette"])) {
+				$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+				if($check !== false) {
+					echo "File is an image - " . $check["mime"] . ".";
+					echo $target_file;
+				    move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],$target_file);
+					$uploadOk = 1;
+				} else {
+					echo "File is not an image.";
+					$uploadOk = 0;
+				}
+			}
+
 			// pour admin ajoute la recette
 			if(isset($_POST['AjoutRecette']))
 				$rm -> ajoutRecette($_POST['nomRecette'], $_POST['dureeRecette'], $_POST['Origine'], $_POST['Definition'], $ingredient);
