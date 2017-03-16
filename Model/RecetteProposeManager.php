@@ -21,7 +21,7 @@
 		}
 		
 		
-	public function proposerRecette($nom, $duree, $origine, $definition, $ingredient){
+	public function proposerRecette($nom, $duree, $origine, $definition, $ingredient, $image){
 		$i = 2;
 		$first = true;
 		$conditions = '';
@@ -44,8 +44,8 @@
 			}
 			
 		}
-		$sql = 'INSERT INTO RecettePropose ( NOMRECETTE,'.$statement.', DEFINITION, DUREE, ORIGINE) values(?,'.$conditions.',?,?,?)';
-		$req = $this -> executerRequete($sql, array( $nom, $definition, $duree, $origine));
+		$sql = 'INSERT INTO RecettePropose ( NOMRECETTE,'.$statement.', DEFINITION, DUREE, ORIGINE, IMAGE) values(?,?,'.$conditions.',?,?,?)';
+		$req = $this -> executerRequete($sql, array( $nom, $definition, $duree, $origine, $image));
 
 		}
 	}

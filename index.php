@@ -100,26 +100,43 @@
 			$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 			$uploadOk = 1;
 			$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-			// Check if image file is a actual image or fake image
+			// Verifie si cest une image ou un fake
 			if(isset($_POST["AjoutRecette"]) || isset($_POST["ProposerRecette"])) {
 				$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 				if($check !== false) {
 					echo "File is an image - " . $check["mime"] . ".";
 					echo $target_file;
-				    move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],$target_file);
 					$uploadOk = 1;
 				} else {
 					echo "File is not an image.";
 					$uploadOk = 0;
 				}
 			}
-
+			//Verifie si image existe deja
+				if (file_exists($target_file)) {
+					echo "Sorry, file already exists.";
+					$uploadOk = 0;
+				}
+				// ¨Permet que quelque format d'image
+				if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+				&& $imageFileType != "gif" ) {
+					echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+					$uploadOk = 0;
+				}
+				// verifie uploadOK
+				if ($uploadOk == 0) {
+					echo "Sorry, your file was not uploaded.";
+				// SI tout marche upload image
+				} else {
+					move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+				}
+			
 			// pour admin ajoute la recette
 			if(isset($_POST['AjoutRecette']))
-				$rm -> ajoutRecette($_POST['nomRecette'], $_POST['dureeRecette'], $_POST['Origine'], $_POST['Definition'], $ingredient);
+				$rm -> ajoutRecette($_POST['nomRecette'], $_POST['dureeRecette'], $_POST['Origine'], $_POST['Definition'], $ingredient, $target_file);
 			// pour membre propose une recette a ajouter
 			if(isset($_POST['ProposerRecette']))
-				$rpm -> proposerRecette($_POST['nomRecette'], $_POST['dureeRecette'], $_POST['Origine'], $_POST['Definition'], $ingredient);
+				$rpm -> proposerRecette($_POST['nomRecette'], $_POST['dureeRecette'], $_POST['Origine'], $_POST['Definition'], $ingredient, $target_file);
 		}
 		// si utilisateurs admin fait la recherche de toutes les recettes proposes puis les affiche dans les pages accueil et page recette
 		if(isset($_SESSION['typeUtilisateurs'])and $_SESSION['typeUtilisateur']=='Admin'){

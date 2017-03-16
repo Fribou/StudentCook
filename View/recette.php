@@ -66,6 +66,7 @@
 	//affiche liste recette
 		foreach($results as $donnees){
 				echo '<tr>';
+				echo '<td><img src="./'. $donnees['IMAGE'].'" alt="tortilla" width="200" /></td>';
 				echo '<td>'.$donnees['NOMRECETTE'].'</td>';
 				echo '<td><a href='.'"index.php?action=recette&recetteid='.$donnees['IDRECETTE'].'#popup1">details de la recette</a></td>';
 				echo '<td><a href='.'"index.php?action=recette&incr='.$donnees['IDRECETTE'].'">Ajouter recette a votre liste</a></td>';
@@ -87,7 +88,7 @@
 
 									echo '<h1>' . $result['NOMRECETTE'] .'</h1>';
 									echo '<br />';
-									//echo '<img src="./Web/img/tortilla.jpg" alt="tortilla" width="300" /><br />';
+									echo '<img src="./'. $result['IMAGE'].'" alt="tortilla" width="300" /><br />';
 									echo $result['DEFINITION'];
 									echo '<br />';
 									echo '<br />';
