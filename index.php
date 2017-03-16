@@ -5,10 +5,12 @@
 	require('Model/RecetteProposeManager.php');
 	require('Model/UserManager.php');
 	require('Model/IngredientManager.php');
+	require('Model/ForumManager.php');
 	$rm = new RecetteManager();
 	$um = new UserManager();
 	$im = new IngredientManager();
 	$rpm = new RecetteProposeManager();
+	$fm = new ForumManager();
 	$ingredient= array();
 
 	//deconnexion de l'utilisateur reviens a page d'acueil
@@ -165,6 +167,7 @@
 		require("View/Recette.php");
 	}
 	else if(isset($_GET['action']) && $_GET["action"]=='forum'){
+		$topic = $fm->getTopic();
 		require("View/Forum.php");
 	}
 	//affiche page recette detail si erreur renvoie a page erreur

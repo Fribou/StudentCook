@@ -7,6 +7,7 @@
 		<link href="Web/CSS/foundation.min.css" rel="stylesheet">
 		<?php
 		if(isset($_GET['action']) && $_GET["action"]=='forum'){
+			echo '<link rel="stylesheet" href="Web/CSS/styles.css" type="text/css">';
 			echo '<link rel="stylesheet" href="Web/CSS/style.css" type="text/css">';
 		}
 		else{

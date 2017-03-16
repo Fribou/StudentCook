@@ -35,7 +35,7 @@
     </div>
     <div class="large-6 small-12 column lpad top-msg ar">
       Bonjour,
-      <a href="#" class="underline"><?php echo $identifiant ?></a>
+      <a href="#" class="underline"><?php echo $_SESSION['identifiant'] ?></a>
     </div>
   </div>
 
@@ -68,146 +68,116 @@
           </div>
         </div>
 
-        <div class="large-12 forum-topic">
+				<?php
+				$i = 0;
+				while ($i < 5){
+				foreach($topic as $ligne)
+					{
+        echo ' <div class="large-12 forum-topic">
           <div class="large-1 column lpad">
             <i class="icon-file"></i>
           </div>
           <div class="large-7 small-8 column lpad">
             <span class="overflow-control">
-              <a href="#">Titre du topic</a>
+              <a href="index.php?idtopic='."$ligne[idtopic]".'">'."$ligne[sujet]".'</a>
             </span>
             <span class="overflow-control">
-              Description du topic
+              '."$ligne[description]".'
             </span>
           </div>
           <div class="large-1 column lpad">
-            <span class="center">96587</span>
+            <span class="center">'."$ligne[nb_msg]".'</span>
           </div>
           <div class="large-1 column lpad">
-            <span class="center"><br /></span>
+            <br />
           </div>
           <div class="large-2 small-4 column pad">
             <span>
-              <a href="#"></a>
             </span>
-            <span>29/03/2017 17h00</span>
-            <span>par <a href="#">"Pseudo"</a></span>
+            <span>'."$ligne[date_creation]".' à '."$ligne[heure_creation]".' </span>
+            <span>by <a href="#">'."$ligne[createur]".'</a></span>
           </div>
-        </div>
+        </div>';
+					$i++;
+			}
 
-         <div class="large-12 forum-topic">
-          <div class="large-1 column lpad">
-            <i class="icon-file"></i>
-          </div>
-          <div class="large-7 small-8 column lpad">
-            <span class="overflow-control">
-              <a href="#">Titre du topic</a>
-            </span>
-            <span class="overflow-control">
-              Description du topic
-            </span>
-          </div>
-          <div class="large-1 column lpad">
-            <span class="center">96587</span>
-          </div>
-          <div class="large-1 column lpad">
-            <span class="center"><br /></span>
-          </div>
-          <div class="large-2 small-4 column pad">
-            <span>
-              <a href="#"></a>
-            </span>
-            <span>29/03/2017 17h00</span>
-            <span>par <a href="#">"Pseudo"</a></span>
-          </div>
-        </div>
+		}
+			?>
 
-        <div class="large-12 forum-topic">
-          <div class="large-1 column lpad">
-            <i class="icon-file"></i>
-          </div>
-          <div class="large-7 small-8 column lpad">
-            <span class="overflow-control">
-              <a href="#">Titre du topic</a>
-            </span>
-            <span class="overflow-control">
-              Description du topic
-            </span>
-          </div>
-          <div class="large-1 column lpad">
-            <span class="center">96587</span>
-          </div>
-          <div class="large-1 column lpad">
-            <span class="center"><br /></span>
-          </div>
-          <div class="large-2 small-4 column pad">
-            <span>
-              <a href="#"></a>
-            </span>
-            <span>29/03/2017 17h00</span>
-            <span>par <a href="#">"Pseudo"</a></span>
-          </div>
-        </div>
-
-         <div class="large-12 forum-topic">
-          <div class="large-1 column lpad">
-            <i class="icon-file"></i>
-          </div>
-          <div class="large-7 small-8 column lpad">
-            <span class="overflow-control">
-              <a href="#">Titre du topic</a>
-            </span>
-            <span class="overflow-control">
-              Description du topic
-            </span>
-          </div>
-          <div class="large-1 column lpad">
-            <span class="center">96587</span>
-          </div>
-          <div class="large-1 column lpad">
-            <span class="center"><br /></span>
-          </div>
-          <div class="large-2 small-4 column pad">
-            <span>
-              <a href="#"></a>
-            </span>
-            <span>29/03/2017 17h00</span>
-            <span>par <a href="#">"Pseudo"</a></span>
-          </div>
-        </div>
-
-       <div class="large-12 forum-topic">
-          <div class="large-1 column lpad">
-            <i class="icon-file"></i>
-          </div>
-          <div class="large-7 small-8 column lpad">
-            <span class="overflow-control">
-              <a href="#">Titre du topic</a>
-            </span>
-            <span class="overflow-control">
-              Description du topic
-            </span>
-          </div>
-          <div class="large-1 column lpad">
-            <span class="center">96587</span>
-          </div>
-          <div class="large-1 column lpad">
-            <span class="center"><br /></span>
-          </div>
-          <div class="large-2 small-4 column pad">
-            <span>
-              <a href="#"></a>
-            </span>
-            <span>29/03/2017 17h00</span>
-            <span>par <a href="#">"Pseudo"</a></span>
-          </div>
-        </div>
 
       </div>
     </div>
   </div>
 
+	<?php
+	if(isset($_SESSION['identifiant'])){
+echo'
+  <div class="row mt">
+    <div class="large-12">
+      <div class="large-12 forum-category rounded top">
+        <div class="large-8 small-10 column lpad">
+          Nouveau Topic
+        </div>
+        <div class="large-4 small-2 column lpad ar">
+          <a data-connect>
+            <i class="icon-collapse-top"></i>
+          </a>
+        </div>
+      </div>
 
+
+			  <div class="large-12 small-12 normal lpad">
+								<div class="row">
+									<div class="large-4 columns">
+										<label>Sujet du topic
+											<input type="text" placeholder="Sujet" />
+										</label>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="large-4 columns">
+										<label>Description du topic
+											<input type="text" placeholder="Description" />
+										</label>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="large-8 columns">
+										<label>Message du topic
+											<textarea  rows="6" placeholder="Ecrivez ici!"></textarea>
+										</label>
+									</div>
+								</div>
+
+						</div>
+
+
+							</form>
+						</span>
+					</div>
+					</span>
+
+				</div>
+
+
+';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		}?>
   <div class="row mt mb">
     <div class="large-12">
       <div class="large-12 small-12 forum-category rounded top lpad">
