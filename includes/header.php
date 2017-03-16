@@ -8,14 +8,18 @@
 					<li> <a href="index.php"> Accueil </a> </li>
 					<li> <a href="index.php?action=recette"> Mes recettes </a> </li>
 					<li> <a href="index.php?action=ingredient"> Ingredients </a> </li>
-					<li> <a href="index.php?action=inscription"> Inscription </a> </li>
-					<li> <a href="index.php?action=connexion"> Connexion </a> </li>
+					<li> <a href="index.php?action=forum"> Forum </a> </li>
+
 					<?php
 						if(!isset($_SESSION['identifiant'])){
-							echo '<li> <a href="index.php?action=forum"> Forum </a> </li>';
+							echo '
+							<li> <a href="index.php?action=inscription"> Inscription </a> </li>
+							<li> <a href="index.php?action=connexion"> Connexion </a> </li>';
 						}
-					?>
-					<li> <a href="index.php?action=deconnexion"> Deconnexion </a> </li>
+						else{
+					echo '<li> <a href="index.php?action=deconnexion"> Deconnexion </a> </li>';
+				}
+				?>
 					<?php
 				/*	if(isset($_SESSION['identifiant']))
 						echo '<br>'.$_SESSION['identifiant'];*/
