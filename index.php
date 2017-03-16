@@ -202,6 +202,10 @@
 		$results= $im -> getIngredient();
 		require("View/ingredient.php");
 	}
+	//ajout ingredient
+	else if(isset($_GET['action']) && $_GET["action"]=='ajoutIngredient'){
+		require("View/ajoutIngredient.php");
+	}
 	else
 	{
 		//ajout recette propose

@@ -3,29 +3,13 @@
 	ob_start();
 	//ajout ingredient
 	if(isset($_SESSION['typeUtilisateur'])&& $_SESSION['typeUtilisateur']=='Admin'){
-		echo '<form method="post" action="./index.php?action=ingredient">
+		echo '<form method="post" action="./index.php?action=ajoutIngredient">
 		<div class="hot-container">
 				<p>
 					<input class="btn btn-blue" name="ajoutIngredient" value="Ajouter un Ingredient" type="submit"></input>
 				</p>
 			</div>
 		</form>';
-	}
-	//formulaire pour ajout ingredient
-	if(isset($_POST['ajoutIngredient'])){
-		echo '<form method="post" action="./index.php?action=ingredient">
-		 <li>Nom Ingredient :<input name="Ingredient" type="text"/></li>
-		 <li>Type ingredient :<select name="typeIngredient">
-							<option value="VPO">Viande, poulet, oeuf</option>
-							<option value="Feculent">Feculent</option>
-							<option value="ProLai">Produit laitier</option>
-							<option value="Gras">Produit gras</option>
-							<option value="LegFru">Legume, Fruit</option>
-							</select>
-		 <li>Apport calorique : <input type="number" name="apportCal" value="0"  step="0.01"></li>
-		 <li>Prix de lingredient : <input type="number" name="prixIngredient" value="0" step="0.01"></li>
-		 <li><input name="AjoutIngredient" value="Ajouter" type="submit"></input></form></li>
-		';
 	}
 
 	//javascript pour afficher les ingredients et les trier par type d'ingredient
