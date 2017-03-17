@@ -86,15 +86,15 @@
    <ol class="rounded-list">
 <?php
 	//affiche les ingredients en fonction de la base de donnee d'ingredient
+	echo'<form action="index.php?action=ingredient" method="post">';
 	foreach($results as $ingredient){
-		echo'<form action="index.php?action=ingredient" method="post">';
 			echo '<div class="'.$ingredient['typeIngredient'].'"><li><a href="">'.$ingredient['NOMINGREDIENT'].'</a></li>';
-			echo '<input type="checkbox" name="'.$ingredient['IDINGREDIENT'].'">O</div>';
+			echo '<input type="checkbox" name="recetteChoisi[]" value="'.$ingredient['IDINGREDIENT'].'">O</div>';
 			if(isset($_SESSION['typeUtilisateur'])&& $_SESSION['typeUtilisateur'] == 'Admin')
 			echo '<button type="submit" name="effacerIngredient" value ="'.$ingredient['IDINGREDIENT'].'">X</button>';
-			echo '<input type="submit" name="Recherche recette">';
-		echo'</form>';
 	}
+	echo '<input type="submit" name="rechercheRecette">';
+	echo'</form>';
 	echo'</ol></div>';
 	$contenu=ob_get_clean();
 	require('View/layout.php');

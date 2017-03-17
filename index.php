@@ -191,20 +191,33 @@
 		else if (isset($_POST['effacerIngredient'])){
 			$im -> effacerIngredient($_POST['effacerIngredient']);
 		}
-		else if  (isset($_POST['rechercheRecette'])){
+		
+	    if (isset($_POST['rechercheRecette'])){
 			$ingredient[] = array();
+			$N = count($_POST['recetteChoisi']);
 			$idingredient = $im ->getIngredient();
-			foreach($idingredient as $id){
-				if(isset($_POST[$id['IDINGREDIENT']])){
-					$ingredient[] = $_POST[$id['NOMINGREDIENT']];
-				}
+			if(!empty($_POST['recetteChoisi'])){
+				foreach($idingredient as $id){
+					for($i=0;$i<$N;$i++){
+						if($_POST['recetteChoisi'][$i] == $id['IDINGREDIENT'])
+							$ingredient[] = $id['NOMINGREDIENT'];
+						}
+					}
 			}
-			$recettes = $im -> recherceRecetteIngredient($ingredient);
+			echo $ingredient[1];
+			echo $ingredient[2];
+			$results = $rm -> rechercheRecetteIngredient($ingredient);
+			echo $results;
+			//foreach{}
+			echo $results['NOMRECETTE'][0];
+			require("View/recette.php");
 		}
-
+		else{
 		$results= $im -> getIngredient();
 		require("View/ingredient.php");
+		}
 	}
+
 	
 	//ajout ingredient
 	else if(isset($_GET['action']) && $_GET["action"]=='ajoutIngredient'){
