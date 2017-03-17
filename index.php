@@ -6,9 +6,11 @@
 	require('Model/UserManager.php');
 	require('Model/IngredientManager.php');
 	require('Model/ForumManager.php');
+	require('Model/MessageManager.php');
 	$rm = new RecetteManager();
 	$um = new UserManager();
 	$im = new IngredientManager();
+	$mm = new MessageManager();
 	$rpm = new RecetteProposeManager();
 	$fm = new ForumManager();
 	$ingredient= array();
@@ -72,7 +74,7 @@
 			}
 		}
 	}
-	
+
 	//page recette affiche toute les recettes disponible
 	else if(isset($_GET['action']) && $_GET["action"]=='recette')
 	{
@@ -97,7 +99,7 @@
 			if(isset($_POST['ingredient5'])){
 				$ingredient[] = $_POST['ingredient5'];
 			}
-			
+
 			$target_dir = "Web/img/";
 			$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 			$uploadOk = 1;
@@ -132,7 +134,7 @@
 				} else {
 					move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
 				}
-			
+
 			// pour admin ajoute la recette
 			if(isset($_POST['AjoutRecette']))
 				$rm -> ajoutRecette($_POST['nomRecette'], $_POST['dureeRecette'], $_POST['Origine'], $_POST['Definition'], $ingredient, $target_file);
@@ -144,11 +146,11 @@
 		if(isset($_SESSION['typeUtilisateurs'])and $_SESSION['typeUtilisateur']=='Admin'){
 			$recettePropose = $rpm -> getRecettePropose();
 		}
-		
+
 	    if(isset($_POST['effacerRecette'])){
 			$rm -> effacerRecette($_POST['effacerRecette']);
 		}
-		
+
 		if(isset($_GET['recetteid']))
 		{
 			if ($_GET['recetteid']=="")
@@ -158,7 +160,7 @@
 			}
 			else if(isset($_GET['recetteid']))
 			{
-				
+
 				$result = $rm -> getRecetteDetail($_GET['recetteid']);
 			}
 		}
@@ -167,11 +169,83 @@
 		require("View/Recette.php");
 	}
 	else if(isset($_GET['action']) && $_GET["action"]=='forum'){
-		$topic = $fm->getTopic();
+		$topicsParPage = 5;
+		$id = $fm->getMaxId();
+		$nombreDePages=ceil($id/$topicsParPage);
+		if(isset($_GET['page'])) // Si la variable $_GET['page'] existe...
+		{
+		 $pageActuelle=intval($_GET['page']);
+		if($pageActuelle>$nombreDePages) // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
+		 {
+					$pageActuelle=$nombreDePages;
+		 }
+		}
+		else // Sinon
+		{
+		 $pageActuelle=1; // La page actuelle est la n°1
+		}
+
+		$premiereEntree=($pageActuelle-1)*$topicsParPage; // On calcul la première entrée à lire
+		$topic = $fm->getTopic($premiereEntree,$topicsParPage);
 		require("View/Forum.php");
+
 	}
+	else if(isset($_GET['action']) && $_GET["action"]=='postTopic'){
+		if(isset($_POST['sujet']) && isset($_POST['description']) && isset($_POST['message'])){
+
+			$sujet = $_POST['sujet'];
+			$description = $_POST['description'];
+			$message = $_POST['message'];
+			$id = $fm->getMaxId();
+			$id = $id+1;
+			$createur =  $_SESSION['identifiant'];
+			$today = getdate();
+
+			$fm->addTopic($id,$sujet,$description,$createur,$today['year'].'-'.$today['mon'].'-'.$today['mday'],$today['hours'].'h'.$today['minutes'],1);
+			$mm->addMessage($id,1,$message,$createur,$today['year'].'-'.$today['mon'].'-'.$today['mday'],$today['hours'].'h'.$today['minutes']);
+			header("Location: index.php?action=forum");
+		}
+
+	}
+
+	else if(isset($_GET['DelId']) && $_GET["DelId"] != NULL){
+		$idtopic = $_GET['DelId'];
+		$mm->deleteMessage($idtopic);
+		$fm->deleteTopic($idtopic);
+		$fm->updateTopicID($idtopic);
+		$mm->updateTopicID($idtopic);
+		header("Location: index.php?action=forum");
+	}
+
+	else if(isset($_GET['idtopic']) && $_GET["idtopic"] != NULL){
+		$idtopic = $_GET['idtopic'];
+		$msg = $mm->getMessage($idtopic);
+		$titre = $fm->getTopicName($idtopic);
+		$today = getdate();
+
+		if(isset($_GET['msgDelId']) && $_GET["msgDelId"] != NULL){
+			$idmsg = $_GET['msgDelId'];
+			$mm->deleteMessage($idtopic, $idmsg);
+			$fm->nbMsgMoins($idtopic);
+			header('Location: index.php?idtopic='.$idtopic.'');
+		}
+
+		if(isset($_GET['action']) && $_GET["action"]=='postMsg'){
+			$rang = $mm->getMaxRang();
+			$rang = $rang + 1;
+			$message = $_POST['message'];
+			$createur =  $_SESSION['identifiant'];
+			$mm->addMessage($idtopic,$rang,$message,$createur,$today['year'].'-'.$today['mon'].'-'.$today['mday'],$today['hours'].'h'.$today['minutes']);
+			$fm->nbMsgPlus($idtopic);
+			header('Location: index.php?idtopic='.$idtopic.'');
+		}
+
+		require("View/Topic.php");
+	}
+
+
 	//affiche page recette detail si erreur renvoie a page erreur
-	/*else if(isset($_GET['recetteid']))
+	else if(isset($_GET['recetteid']))
 	{
 		if ($_GET['recetteid']=="")
 		{
@@ -184,7 +258,7 @@
 			$result = $rm -> getRecetteDetail($_GET['recetteid']);
 			require("View/Recette.php");
 		}
-	}*/
+	}
 	// Affiche page  ajout recette
 	else if(isset($_GET['action']) && $_GET["action"]=='AjoutRecette'){
 		$results = $im -> getIngredient();
@@ -226,6 +300,7 @@
 				$detailPropose = $rpm -> getRecetteProposeID($_GET['recetteid']);
 			}
 		}
+		
 		$result = $rm -> getRecette();
 		require("View/accueil.php");
 	}

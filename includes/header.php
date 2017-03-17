@@ -22,7 +22,7 @@
 				}
 				?>
 
-
+				<?php
 				/*	if(isset($_SESSION['identifiant']))
 						echo '<br>'.$_SESSION['identifiant'];*/
 					?>

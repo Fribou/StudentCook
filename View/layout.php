@@ -13,6 +13,16 @@
 		else{
 		echo '<link rel="stylesheet" href="Web/CSS/styles.css" type="text/css">';
 		}
+
+		if(isset($_GET['idtopic']) && $_GET["idtopic"] != null){
+			echo '<link rel="stylesheet" href="Web/CSS/styles.css" type="text/css">';
+			echo '<link rel="stylesheet" href="Web/CSS/style.css" type="text/css">';
+		}
+		else{
+		echo '<link rel="stylesheet" href="Web/CSS/styles.css" type="text/css">';
+		}
+
+
 		?>
 		<title> <?php echo $title; ?> </title>
 	</head>
@@ -24,7 +34,8 @@
 			?>
 		</header>
 		<?php echo $contenu; ?>
-		<script src="Web/JS/jquery.js"></script>
-		<script src="Web/JS/bootstrap.js"></script>
+		<script type="text/javascript" src="Web/JS/jquery.js"></script>
+		<script type="text/javascript" src="Web/JS/bootstrap.js"></script>
+		<script type="text/javascript" src="WEB/JS/jquery.simplePagination.js"></script>
 	</body>
 </html>

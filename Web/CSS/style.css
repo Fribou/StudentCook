@@ -44,6 +44,10 @@ a {
 	color : black;
 }
 
+#black{
+  color: black;
+}
+
 .logo {
   color: hsl(0, 0%, 100%);
   font-size: 18px;

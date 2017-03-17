@@ -3,22 +3,6 @@
 	ob_start();
   ?>
 
-	<link href="Web/CSS/style.css" rel="stylesheet">
-  <header id="#top">
-    <div class="row">
-      <div class="large-4 column lpad" id="logo">
-        <div class="logo">
-          <span>Student</span>
-          <span>Cook</span>
-        </div>
-      </div>
-      <div class="large-8 column ar lpad">
-        <nav class="menu">
-          <a href="#" class="current">Forum</a>
-        </nav>
-      </div>
-    </div>
-  </header>
 
   <a href="#top" id="top-button">
     <i class="icon-angle-up"></i>
@@ -26,16 +10,12 @@
   <div class="row">
     <div class="large-6 column lpad top-msg ">
       <span id="breadcrumb">
-        <a href="#"> Postes/</a>
-
-        <?php
-        ?>
-        <a href="#">Topic</a>
+        <a href="#"> Postes</a>
       </span>
     </div>
     <div class="large-6 small-12 column lpad top-msg ar">
       Bonjour,
-      <a href="#" class="underline"><?php echo $_SESSION['identifiant'] ?></a>
+      <a href="#" class="underline"><?php if(isset($_SESSION['identifiant'])){ echo $_SESSION['identifiant'];} else {echo'Anonyme';} ?></a>
     </div>
   </div>
 
@@ -68,46 +48,76 @@
           </div>
         </div>
 
-				<?php
-				$i = 0;
-				while ($i < 5){
-				foreach($topic as $ligne)
-					{
-        echo ' <div class="large-12 forum-topic">
-          <div class="large-1 column lpad">
-            <i class="icon-file"></i>
-          </div>
-          <div class="large-7 small-8 column lpad">
-            <span class="overflow-control">
-              <a href="index.php?idtopic='."$ligne[idtopic]".'">'."$ligne[sujet]".'</a>
-            </span>
-            <span class="overflow-control">
-              '."$ligne[description]".'
-            </span>
-          </div>
-          <div class="large-1 column lpad">
-            <span class="center">'."$ligne[nb_msg]".'</span>
-          </div>
-          <div class="large-1 column lpad">
-            <br />
-          </div>
-          <div class="large-2 small-4 column pad">
-            <span>
-            </span>
-            <span>'."$ligne[date_creation]".' à '."$ligne[heure_creation]".' </span>
-            <span>by <a href="#">'."$ligne[createur]".'</a></span>
-          </div>
-        </div>';
-					$i++;
-			}
 
-		}
-			?>
 
+<?php
+
+
+
+// La requête sql pour récupérer les messages de la page actuelle.
+
+ $i = 0;
+ foreach($topic as $ligne)
+	 {
+ echo ' <div class="large-12 forum-topic">
+	 <div class="large-1 column lpad">
+		 <i class="icon-file"></i>
+	 </div>
+	 <div class="large-7 small-8 column lpad">
+		 <span class="overflow-control">
+			 <a href="index.php?idtopic='."$ligne[idtopic]".'">'."$ligne[sujet]".'</a>
+		 </span>
+		 <span class="overflow-control">
+			 '."$ligne[description]".'
+		 </span>
+	 </div>
+	 <div class="large-1 column lpad">
+		 <span class="center">'."$ligne[nb_msg]".'</span>
+	 </div>
+	 <div class="large-1 column lpad">
+		 <br />
+	 </div>
+	 <div class="large-2 small-4 column pad">
+		 <span>
+		 </span>
+		 <span>'."$ligne[date_creation]".' à '."$ligne[heure_creation]".'';
+		 if(isset($_SESSION['identifiant']) && $_SESSION['identifiant'] == 'Admin'){ 	echo '<a class="close" href="index.php?DelId='."$ligne[idtopic]".'">&times;</a>'; }
+		 echo '</span>
+		 <span>par <a href="#">'."$ligne[createur]".'</a></span>
+	 </div>
+ </div>';
+	 $i++;
+	 if($i == $topicsParPage) break;
+}
+
+echo '<p align="center">Page : '; //Pour l'affichage, on centre la liste des pages
+for($i=1; $i<=$nombreDePages; $i++) //On fait notre boucle
+{
+ //On va faire notre condition
+ if($i==$pageActuelle) //Si il s'agit de la page actuelle...
+ {
+		 echo ' [ '.$i.' ] ';
+ }
+ else //Sinon...
+ {
+			echo ' <a href="index.php?action=forum&page='.$i.'">'.$i.'</a> ';
+ }
+}
+echo '</p>';
+?>
+
+
+
+
+
+
+
+
+			</div>
 
       </div>
     </div>
-  </div>
+
 
 	<?php
 	if(isset($_SESSION['identifiant'])){
@@ -125,12 +135,12 @@ echo'
         </div>
       </div>
 
-
+			<form method="post" action="index.php?action=postTopic">
 			  <div class="large-12 small-12 normal lpad">
 								<div class="row">
 									<div class="large-4 columns">
 										<label>Sujet du topic
-											<input type="text" placeholder="Sujet" />
+											<input name="sujet" type="text" placeholder="Sujet" />
 										</label>
 									</div>
 								</div>
@@ -138,7 +148,7 @@ echo'
 								<div class="row">
 									<div class="large-4 columns">
 										<label>Description du topic
-											<input type="text" placeholder="Description" />
+											<input name="description" type="text" placeholder="Description" />
 										</label>
 									</div>
 								</div>
@@ -146,10 +156,12 @@ echo'
 								<div class="row">
 									<div class="large-8 columns">
 										<label>Message du topic
-											<textarea  rows="6" placeholder="Ecrivez ici!"></textarea>
+											<textarea  maxlength ="255" name="message" rows="6" placeholder="Ecrivez ici!"></textarea>
 										</label>
 									</div>
 								</div>
+
+								<input type="submit" value="Poster!"/>
 
 						</div>
 
@@ -158,26 +170,11 @@ echo'
 						</span>
 					</div>
 					</span>
-
-				</div>
-
-
-';
+						</div>';
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-		}?>
+?>
   <div class="row mt mb">
     <div class="large-12">
       <div class="large-12 small-12 forum-category rounded top lpad">
