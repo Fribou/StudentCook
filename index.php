@@ -168,6 +168,7 @@
 		$results= $rm -> getRecette();
 		require("View/Recette.php");
 	}
+	// page forum
 	else if(isset($_GET['action']) && $_GET["action"]=='forum'){
 		$topicsParPage = 5;
 		$id = $fm->getMaxId();
@@ -244,8 +245,9 @@
 	}
 
 
+
 	//affiche page recette detail si erreur renvoie a page erreur
-	else if(isset($_GET['recetteid']))
+/*	else if(isset($_GET['recetteid']))
 	{
 		if ($_GET['recetteid']=="")
 		{
@@ -258,7 +260,8 @@
 			$result = $rm -> getRecetteDetail($_GET['recetteid']);
 			require("View/Recette.php");
 		}
-	}
+	}*/
+
 	// Affiche page  ajout recette
 	else if(isset($_GET['action']) && $_GET["action"]=='AjoutRecette'){
 		$results = $im -> getIngredient();
@@ -268,6 +271,7 @@
 		$results = $im -> getIngredient();
 		require("View/AjoutRecette.php");
 	}
+
 	// affiche page ingredient
 	else if(isset($_GET['action']) && $_GET["action"]=='ingredient')
 	{
@@ -275,9 +279,40 @@
 		if (isset($_POST['AjoutIngredient'])){
 			$im -> ajoutIngredient($_POST['Ingredient'], $_POST['typeIngredient'], $_POST['apportCal'], $_POST['prixIngredient']);
 		}
+		else if (isset($_POST['effacerIngredient'])){
+			$im -> effacerIngredient($_POST['effacerIngredient']);
+		}
 
+	    if (isset($_POST['rechercheRecette'])){
+			$ingredient[] = array();
+			$N = count($_POST['recetteChoisi']);
+			$idingredient = $im ->getIngredient();
+			if(!empty($_POST['recetteChoisi'])){
+				foreach($idingredient as $id){
+					for($i=0;$i<$N;$i++){
+						if($_POST['recetteChoisi'][$i] == $id['IDINGREDIENT'])
+							$ingredient[] = $id['NOMINGREDIENT'];
+						}
+					}
+			}
+			echo $ingredient[1];
+			echo $ingredient[2];
+			$results = $rm -> rechercheRecetteIngredient($ingredient);
+			echo $results;
+			//foreach{}
+			echo $results['NOMRECETTE'][0];
+			require("View/recette.php");
+		}
+		else{
 		$results= $im -> getIngredient();
 		require("View/ingredient.php");
+		}
+	}
+
+
+	//ajout ingredient
+	else if(isset($_GET['action']) && $_GET["action"]=='ajoutIngredient'){
+		require("View/ajoutIngredient.php");
 	}
 	else
 	{
@@ -300,7 +335,13 @@
 				$detailPropose = $rpm -> getRecetteProposeID($_GET['recetteid']);
 			}
 		}
-		
+
+
+
+		if (isset($_GET['recetteListeid'])){
+			$detailPropose = $rm ->getRecetteDetail($_GET['recetteListeid']);
+		}
+
 		$result = $rm -> getRecette();
 		require("View/accueil.php");
 	}

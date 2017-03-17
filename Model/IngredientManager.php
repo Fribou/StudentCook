@@ -8,6 +8,13 @@
       return $results;
     }
 	
+	  function getIDIngredient(){
+       $sql='SELECT IDINGREDIENT FROM Ingredient';
+      $req = $this->executerRequete($sql);
+      $results = $req->fetchAll(PDO::FETCH_ASSOC);
+      return $results;
+    }
+	
 	function ajoutIngredient($nom, $typeIngredient, $apport, $prix){
 		$sql='SELECT * FROM Ingredient';
 		$req = $this->executerRequete($sql);
@@ -17,6 +24,11 @@
 		$sql='Insert into Ingredient (IDINGREDIENT, NOMINGREDIENT, typeIngredient, APPORTCAL, PRIX) values (?,?,?,?,?)';
 		$req = $this->executerRequete($sql, array($id, $nom, $typeIngredient, $apport, $prix));
 	}
+	
+	function effacerIngredient($id){
+			$sql='DELETE FROM Ingredient WHERE IDINGREDIENT = ?';
+			$req = $this -> executerRequete($sql, array($id));
+		}
 	
   }
 ?>

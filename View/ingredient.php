@@ -3,29 +3,13 @@
 	ob_start();
 	//ajout ingredient
 	if(isset($_SESSION['typeUtilisateur'])&& $_SESSION['typeUtilisateur']=='Admin'){
-		echo '<form method="post" action="./index.php?action=ingredient">
+		echo '<form method="post" action="./index.php?action=ajoutIngredient">
 		<div class="hot-container">
 				<p>
 					<input class="btn btn-blue" name="ajoutIngredient" value="Ajouter un Ingredient" type="submit"></input>
 				</p>
 			</div>
 		</form>';
-	}
-	//formulaire pour ajout ingredient
-	if(isset($_POST['ajoutIngredient'])){
-		echo '<form method="post" action="./index.php?action=ingredient">
-		 <li>Nom Ingredient :<input name="Ingredient" type="text"/></li>
-		 <li>Type ingredient :<select name="typeIngredient">
-							<option value="VPO">Viande, poulet, oeuf</option>
-							<option value="Feculent">Feculent</option>
-							<option value="ProLai">Produit laitier</option>
-							<option value="Gras">Produit gras</option>
-							<option value="LegFru">Legume, Fruit</option>
-							</select>
-		 <li>Apport calorique : <input type="number" name="apportCal" value="0"  step="0.01"></li>
-		 <li>Prix de lingredient : <input type="number" name="prixIngredient" value="0" step="0.01"></li>
-		 <li><input name="AjoutIngredient" value="Ajouter" type="submit"></input></form></li>
-		';
 	}
 
 	//javascript pour afficher les ingredients et les trier par type d'ingredient
@@ -102,9 +86,15 @@
    <ol class="rounded-list">
 <?php
 	//affiche les ingredients en fonction de la base de donnee d'ingredient
+	echo'<form action="index.php?action=ingredient" method="post">';
 	foreach($results as $ingredient){
-		echo '<div class="'.$ingredient['typeIngredient'].'"><li><a href="">'.$ingredient['NOMINGREDIENT'].'</a></li></div>';
+			echo '<div class="'.$ingredient['typeIngredient'].'"><li><a href="">'.$ingredient['NOMINGREDIENT'].'</a></li>';
+			echo '<input type="checkbox" name="recetteChoisi[]" value="'.$ingredient['IDINGREDIENT'].'">O</div>';
+			if(isset($_SESSION['typeUtilisateur'])&& $_SESSION['typeUtilisateur'] == 'Admin')
+			echo '<button type="submit" name="effacerIngredient" value ="'.$ingredient['IDINGREDIENT'].'">X</button>';
 	}
+	echo '<input type="submit" name="rechercheRecette">';
+	echo'</form>';
 	echo'</ol></div>';
 	$contenu=ob_get_clean();
 	require('View/layout.php');
