@@ -20,7 +20,22 @@
 			$sql='DELETE FROM Recette WHERE IDRECETTE = ?';
 			$req = $this -> executerRequete($sql, array($id));
 		}
-		
+		function recherceRecetteIngredient($ingredient){
+		$conditions = '';
+		foreach($ingredient as $c)
+		{
+			for($i = 1; $i<6; $i++){
+					$conditions .= "INGREDIENT".$i." = ".$c." OR ";
+			}
+		}
+
+			
+		$sql="SELECT * FROM Recette where ".$conditions;
+		 $req = $this->executeRequest($sql);
+    	 $recette = $req->fetchAll(PDO::FETCH_ASSOC);
+		 return $recette;
+			
+		}
 		public function getValidation()
 		{
 			$sql='SELECT Nomrecette, Ingredient1, Ingredient2, Ingredient3, Ingredient4, Ingredient5, Definition from Recette where Valider= False';

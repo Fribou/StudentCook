@@ -8,6 +8,13 @@
       return $results;
     }
 	
+	  function getIDIngredient(){
+       $sql='SELECT IDINGREDIENT FROM Ingredient';
+      $req = $this->executerRequete($sql);
+      $results = $req->fetchAll(PDO::FETCH_ASSOC);
+      return $results;
+    }
+	
 	function ajoutIngredient($nom, $typeIngredient, $apport, $prix){
 		$sql='SELECT * FROM Ingredient';
 		$req = $this->executerRequete($sql);

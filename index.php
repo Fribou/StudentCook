@@ -192,7 +192,14 @@
 			$im -> effacerIngredient($_POST['effacerIngredient']);
 		}
 		else if  (isset($_POST['rechercheRecette'])){
-			
+			$ingredient[] = array();
+			$idingredient = $im ->getIngredient();
+			foreach($idingredient as $id){
+				if(isset($_POST[$id['IDINGREDIENT']])){
+					$ingredient[] = $_POST[$id['NOMINGREDIENT']];
+				}
+			}
+			$recettes = $im -> recherceRecetteIngredient($ingredient);
 		}
 
 		$results= $im -> getIngredient();
