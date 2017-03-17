@@ -16,9 +16,9 @@
 				if(in_array($recette['IDRECETTE'], $_SESSION['arrayRecette'])){
 					echo '<tr>';
 					echo '
-					<form action="index.php#popup1" method="post">
+					<form action="index.php" method="post">
 					  <td>'.$recette['NOMRECETTE'].'</td>
-					  <td><button type="submit" name="detailPropose" value="'.$recette['IDRECETTE'].'">Detail de la recette</button></td>
+					  <td><a href='.'"index.php?recetteListeid='.$recette['IDRECETTE'].'#popup1">details de la recette</a></td>
 					</form>
 					';
 					echo '</tr>';
@@ -44,6 +44,7 @@
 		echo'<div class="texte">Votre liste de recette est vide<br><br><br></div>';
 	}
 	// affiche les recettes proposes par les membres
+if(isset($_SESSION['typeUtilisateur']) and $_SESSION['typeUtilisateur']=='Admin'){
 	if(isset($recettePropose) and $recettePropose!=Null){
 		echo '<div class="texte">Des utilisateurs ont propose ces recettes, voulez-vous les ajouter au site?</div>';
 		//echo' <ol class="rounded-list">';
@@ -71,6 +72,7 @@
 
 									echo '<h1>' . $detailPropose['NOMRECETTE'] .'</h1>';
 									echo '<br />';
+									echo '<img src="./'. $detailPropose['IMAGE'].'" alt="tortilla" width="300" /><br />';
 									echo $detailPropose['DEFINITION'];
 									echo '<br />';
 									echo '<br />';
@@ -93,7 +95,7 @@
 	else{
 		echo'<div class="texte"> Pas de propositions de recettes en cours</div>';
 	}
-
+}
 
 
 	$contenu = ob_get_clean();

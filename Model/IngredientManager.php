@@ -18,5 +18,10 @@
 		$req = $this->executerRequete($sql, array($id, $nom, $typeIngredient, $apport, $prix));
 	}
 	
+	function effacerIngredient($id){
+			$sql='DELETE FROM Ingredient WHERE IDINGREDIENT = ?';
+			$req = $this -> executerRequete($sql, array($id));
+		}
+	
   }
 ?>

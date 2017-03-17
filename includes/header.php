@@ -18,14 +18,9 @@
 							<li> <a href="index.php?action=connexion"> Connexion </a> </li>';
 						}
 						else{
-					echo '<li> <a href="index.php?action=deconnexion"> Deconnexion </a> </li>';
+							echo '<li> <a href="index.php?action=deconnexion"> Deconnexion </a> </li>';
 				}
 				?>
-
-
-				/*	if(isset($_SESSION['identifiant']))
-						echo '<br>'.$_SESSION['identifiant'];*/
-					?>
 				</ul>
 			</nav>
 		</div>

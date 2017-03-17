@@ -166,25 +166,11 @@
 		$results= $rm -> getRecette();
 		require("View/Recette.php");
 	}
+	// page forum
 	else if(isset($_GET['action']) && $_GET["action"]=='forum'){
 		$topic = $fm->getTopic();
 		require("View/Forum.php");
 	}
-	//affiche page recette detail si erreur renvoie a page erreur
-	/*else if(isset($_GET['recetteid']))
-	{
-		if ($_GET['recetteid']=="")
-		{
-			$erreur='Identifiant de recette requis';
-			require("View/error.php");
-		}
-		else if(isset($_GET['recetteid']))
-		{
-			$results= $rm -> getRecette();
-			$result = $rm -> getRecetteDetail($_GET['recetteid']);
-			require("View/Recette.php");
-		}
-	}*/
 	// Affiche page  ajout recette
 	else if(isset($_GET['action']) && $_GET["action"]=='AjoutRecette'){
 		$results = $im -> getIngredient();
@@ -194,6 +180,7 @@
 		$results = $im -> getIngredient();
 		require("View/AjoutRecette.php");
 	}
+	
 	// affiche page ingredient
 	else if(isset($_GET['action']) && $_GET["action"]=='ingredient')
 	{
@@ -201,10 +188,17 @@
 		if (isset($_POST['AjoutIngredient'])){
 			$im -> ajoutIngredient($_POST['Ingredient'], $_POST['typeIngredient'], $_POST['apportCal'], $_POST['prixIngredient']);
 		}
+		else if (isset($_POST['effacerIngredient'])){
+			$im -> effacerIngredient($_POST['effacerIngredient']);
+		}
+		else if  (isset($_POST['rechercheRecette'])){
+			
+		}
 
 		$results= $im -> getIngredient();
 		require("View/ingredient.php");
 	}
+	
 	//ajout ingredient
 	else if(isset($_GET['action']) && $_GET["action"]=='ajoutIngredient'){
 		require("View/ajoutIngredient.php");
@@ -229,6 +223,9 @@
 			if(isset($_GET['recetteid'])){
 				$detailPropose = $rpm -> getRecetteProposeID($_GET['recetteid']);
 			}
+		}
+		if (isset($_GET['recetteListeid'])){
+			$detailPropose = $rm ->getRecetteDetail($_GET['recetteListeid']);
 		}
 		$result = $rm -> getRecette();
 		require("View/accueil.php");
