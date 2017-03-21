@@ -203,7 +203,7 @@
 			$today = getdate();
 
 			$fm->addTopic($id,$sujet,$description,$createur,$today['year'].'-'.$today['mon'].'-'.$today['mday'],$today['hours'].'h'.$today['minutes'],1);
-			$mm->addMessage($id,1,$message,$createur,$today['year'].'-'.$today['mon'].'-'.$today['mday'],$today['hours'].'h'.$today['minutes']);
+			$mm->addMessage(1,$message,$createur,$today['year'].'-'.$today['mon'].'-'.$today['mday'],$today['hours'].'h'.$today['minutes']);
 			header("Location: index.php?action=forum");
 		}
 

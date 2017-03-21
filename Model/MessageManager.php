@@ -8,8 +8,8 @@ class MessageManager extends Model
     return $results;
   }
 
-  public function addMessage($idtopic,$rang,$contenu,$pseudo,$date_message,$heure_message){
-    $req = $this->executerRequete('INSERT INTO message VALUES (?,?,?,?,?,?)', array($idtopic,$rang,$contenu,$pseudo,$date_message,$heure_message));
+  public function addMessage($rang,$contenu,$pseudo,$date_message,$heure_message){
+    $req = $this->executerRequete('INSERT INTO message VALUES (?,?,?,?,?)', array($rang,$contenu,$pseudo,$date_message,$heure_message));
 }
 
 public function deleteMessage($idtopic, $idmsg){

@@ -8,7 +8,7 @@ class ForumManager extends Model
   }
 
   public function addTopic($idtopic,$sujet,$description,$createur,$date_creation,$heure_creation,$nb_msg){
-    $req = $this->executerRequete('INSERT INTO Topic VALUES (?,?,?,?,?,?)', array($sujet,$description,$createur,$date_creation,$heure_creation,$nb_msg));
+    $req = $this->executerRequete('INSERT INTO Topic VALUES (?,?,?,?,?,?,?)', array($idtopic,$sujet,$description,$createur,$date_creation,$heure_creation,$nb_msg));
   }
 
   public function NbMsgplus($idtopic){
