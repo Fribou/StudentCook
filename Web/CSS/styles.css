@@ -1,21 +1,35 @@
 /*/accueil*/
 #cont {
   overflow: hidden;
-  width: 2000px;
+  
 }
 
 #inner {
+<<<<<<< HEAD
+  overflow: hidden;
+=======
   margin-left:370px ;
   overflow:hidden;
   width: 2000px;
+>>>>>>> e925f48773a04fbff1887e566f01470b61b2e083
 }
 
 .child {
+  margin-left : 200px;
   float: left;
   width: 300px;
   height: 300px;
+  font-size : x-large;
+  border : 5px #40A451 dotted;
+  text-align: center;
+  text-decoration: underline;
 }
 
+#imgconsult{
+  margin-top: 10px;
+  border: 3px black solid;
+  border-radius : 5px;
+}
 
 
 /*////////////////////////////////////// NTO //////////////////////*/
@@ -24,7 +38,7 @@ body{
   position : relative;
   background: url(../img/bg.jpg);
   background-size: cover;
-  background-repeat:no-repeat;
+  background-repeat:repeat;
   color:white;
 }
  h3{

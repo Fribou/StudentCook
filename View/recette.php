@@ -33,20 +33,20 @@ if(empty($results)){
 ?>
 	<h1>Liste des Recettes</h1>
 	<?php
-	
+
 	echo '<table class="table-fill">';
 	//affiche liste recette
 		foreach($results as $donnees){
 				echo '<tr>';
 				echo '<td><img src="./'. $donnees['IMAGE'].'" alt="tortilla" width="200" /></td>';
 				echo '<td>'.$donnees['NOMRECETTE'].'</td>';
-				
+
 				if(isset($_SESSION['rechercheIngre']) and $_SESSION['rechercheIngre']== true)
-					echo '<td><a href='.'"index.php?action=ingredient&rechercheRecette='.$donnees['IDRECETTE'].'#popup1">details de la recette</a></td>';
-				
+					echo '<td><a href='.'"index.php?action=ingredient&rechercheRecette='.$donnees['IDRECETTE'].'#popup1">détails de la recette</a></td>';
+
 				else
-					echo '<td><a href='.'"index.php?action=recette&recetteid='.$donnees['IDRECETTE'].'#popup1">details de la recette</a></td>';
-				
+					echo '<td><a href='.'"index.php?action=recette&recetteid='.$donnees['IDRECETTE'].'#popup1">Détails de la recette</a></td>';
+
 				echo '<td><a href='.'"index.php?action=recette&incr='.$donnees['IDRECETTE'].'">Ajouter recette a votre liste</a></td>';
 				echo'<form action="index.php?action=recette" method="post">';
 				echo'<td><button type="submit" name="effacerRecette" value ="'.$donnees['IDRECETTE'].'">X</button></form></td>';
@@ -56,8 +56,8 @@ if(empty($results)){
 
 	 ?>
 	 </table>
-	 
-	 
+
+
 <?php
 	//Details de la recette
 	echo '	 <div id="popup1" class="overlay">
@@ -100,13 +100,12 @@ if(isset($_SESSION['arrayRecette']) && !empty($_SESSION['arrayRecette'])){
 				}
 			}
 
-			
+
 			echo'</ol>';
 			//propose effacement de la liste de choix de recette
 
 			echo'<div class="texte">Pas satisfait de votre liste?</div>
 		<form method="post" action="index.php?action=recette">
-		
 		<div class="hot-container">
 				<p>
 					<input class="btn btn-blue" name="effacerArray" value="Effacer liste" type="submit"></input>
