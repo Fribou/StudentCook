@@ -89,9 +89,9 @@
 	echo'<form action="index.php?action=ingredient" method="post">';
 	foreach($results as $ingredient){
 			echo '<div class="'.$ingredient['typeIngredient'].'"><li><a href="">'.$ingredient['NOMINGREDIENT'].'</a></li>';
-			echo '<input type="checkbox" name="recetteChoisi[]" value="'.$ingredient['IDINGREDIENT'].'">O</div>';
+			echo '<input type="checkbox" name="recetteChoisi[]" value="'.$ingredient['IDINGREDIENT'].'">Cochez ici</div>';
 			if(isset($_SESSION['typeUtilisateur'])&& $_SESSION['typeUtilisateur'] == 'Admin')
-			echo '<button type="submit" name="effacerIngredient" value ="'.$ingredient['IDINGREDIENT'].'">X</button>';
+			echo '<button type="submit" name="effacerIngredient" value ="'.$ingredient['IDINGREDIENT'].'">Supprimez cet ingrédient</button>';
 	}
 	echo '
 	<div class="hot-container">
