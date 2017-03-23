@@ -29,6 +29,7 @@
 		      <label for="subject">
 		      <span >Ingredient '.$i.'</span>
 			      <select id="subject" name="ingredient'.$i.'" tabindex="2">
+					<option value=" ">Aucun</option>
 					';
 					foreach($results as $donnees){
 					echo'

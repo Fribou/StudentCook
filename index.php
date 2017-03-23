@@ -283,8 +283,6 @@
 					}
 				}
 			}
-			echo $ingredient[1];
-			echo $_SESSION['rechercheIngredient'][1];
 			$_SESSION['rechercheIngre'] = true;
 			$results = $rm -> rechercheRecetteIngredient($ingredient);
 			require("View/recette.php");
