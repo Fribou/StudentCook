@@ -10,7 +10,7 @@
 	echo'<div id="inner">';
 	foreach($recetteConsult as $re){
 		echo'<div class="child">
-		 <p><img src="./'.$re['IMAGE'].'" alt="tortilla" width="200" /></p>
+		 <p><img id = "imgconsult"  src="./'.$re['IMAGE'].'" alt="tortilla" width="200" /></p>
 		<p>'.$re['NOMRECETTE'].'</p>
 		</div>';
 	}
@@ -40,10 +40,10 @@
 		</table>';
 
 			echo'</ol>';
-		// propose d'effacer la liste de choix de recette	
+		// propose d'effacer la liste de choix de recette
 		echo'<div class="texte">Pas satisfait de votre liste?</div>
 		<form method="post" action="./index.php">
-		
+
 		<div class="hot-container">
 				<p>
 					<input class="btn btn-blue" name="effacerArray" value="Effacer liste" type="submit"></input>
@@ -61,7 +61,7 @@ if(isset($_SESSION['typeUtilisateur']) and $_SESSION['typeUtilisateur']=='Admin'
 		echo '<div class="texte">Des utilisateurs ont propose ces recettes, voulez-vous les ajouter au site?</div>';
 		//echo' <ol class="rounded-list">';
 		echo'<table class="table-fill">';
-		
+
 		foreach($recettePropose as $recette){
 			echo '<tr>';
 			echo '
