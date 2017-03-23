@@ -5,7 +5,13 @@
 }
 
 #inner {
+<<<<<<< HEAD
   overflow: hidden;
+=======
+  margin-left:370px ;
+  overflow:hidden;
+  width: 2000px;
+>>>>>>> e925f48773a04fbff1887e566f01470b61b2e083
 }
 
 .child {
@@ -24,6 +30,7 @@
   border: 3px black solid;
   border-radius : 5px;
 }
+
 
 /*////////////////////////////////////// NTO //////////////////////*/
 

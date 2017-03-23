@@ -14,7 +14,7 @@
 	$rpm = new RecetteProposeManager();
 	$fm = new ForumManager();
 	$ingredient= array();
-
+	date_default_timezone_set('America/Los_Angeles');
 	//deconnexion de l'utilisateur reviens a page d'acueil
 	if(isset($_GET['action'])&& $_GET['action']=='deconnexion')
 	{
