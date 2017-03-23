@@ -78,6 +78,10 @@
 	//page recette affiche toute les recettes disponible
 	else if(isset($_GET['action']) && $_GET["action"]=='recette')
 	{
+		// efface liste de recette choisis
+		if(isset($_POST['effacerArray'])){
+			$_SESSION['arrayRecette'] = array();
+		}
 		$_SESSION['rechercheIngre'] = false;
 		// si utilisateur a choisi une recette pour sa liste de choix l'increment a un tableau avec tous ces choix
 		if(isset($_GET['incr'])){

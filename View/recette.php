@@ -105,7 +105,7 @@ if(isset($_SESSION['arrayRecette']) && !empty($_SESSION['arrayRecette'])){
 			//propose effacement de la liste de choix de recette
 
 			echo'<div class="texte">Pas satisfait de votre liste?</div>
-		<form method="post" action="./index.php">
+		<form method="post" action="index.php?action=recette">
 		
 		<div class="hot-container">
 				<p>
