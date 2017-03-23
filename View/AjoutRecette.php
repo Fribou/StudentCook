@@ -75,10 +75,7 @@
 		   </form>
 		   </div>';
 			
-			
-			//else if ($_GET['action']=="ProposerRecette"){
-				
-			//}
+
 				
 		
 		

@@ -63,7 +63,7 @@ echo '
   </div>
   <div class="large-8 large-4 column lpad">
     <span >
-      '."$ligne[contenu]".'
+      '.$ligne["contenu"].'
     </span>
   </div>
   <div class="large-1 column lpad">
@@ -72,10 +72,10 @@ echo '
   <div class="large-2 small-4 column pad">
     <span>
     </span>
-    <span>'."$ligne[date_message]".' à '."$ligne[heure_message]".'';
+    <span>"'.$ligne["date_message"].'" à "'.$ligne["heure_message"].'"';
     if(isset($_SESSION['identifiant']) && $_SESSION['identifiant'] == 'Admin'){ 	echo '<a class="close" href="index.php?idtopic='."$ligne[idtopic]".'&msgDelId='."$ligne[rang]".'">&times;</a>'; }
     echo '</span>
-    <span>par <a href="#">'."$ligne[pseudo]".'</a></span>
+    <span>par <a href="#">"'.$ligne["pseudo"].'"</a></span>
   </div>
 </div>
 ';

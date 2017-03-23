@@ -92,8 +92,8 @@
 		$result = $req->fetchAll(PDO::FETCH_ASSOC);
 		$id = count($result)+1;
 			
-		$sql = 'INSERT INTO Recette (IDRECETTE, NOMRECETTE,INGREDIENT1, INGREDIENT2, INGREDIENT3, INGREDIENT4, INGREDIENT5, DEFINITION, DUREE, ORIGINE) values(?,?,?,?,?,?,?,?,?,?)';
-		$req = $this -> executerRequete($sql, array($id, $recette['NOMRECETTE'], $recette['INGREDIENT1'], $recette['INGREDIENT2'], $recette['INGREDIENT3'], $recette['INGREDIENT4'], $recette['INGREDIENT5'], $recette['DEFINITION'], $recette['DUREE'], $recette['ORIGINE']));
+		$sql = 'INSERT INTO Recette (IDRECETTE, NOMRECETTE,INGREDIENT1, INGREDIENT2, INGREDIENT3, INGREDIENT4, INGREDIENT5, DEFINITION, DUREE, ORIGINE, IMAGE) values(?,?,?,?,?,?,?,?,?,?,?)';
+		$req = $this -> executerRequete($sql, array($id, $recette['NOMRECETTE'], $recette['INGREDIENT1'], $recette['INGREDIENT2'], $recette['INGREDIENT3'], $recette['INGREDIENT4'], $recette['INGREDIENT5'], $recette['DEFINITION'], $recette['DUREE'], $recette['ORIGINE'], $recette['IMAGE']));
 			
 		}
 	}

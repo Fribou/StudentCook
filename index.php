@@ -203,7 +203,7 @@
 			$today = getdate();
 
 			$fm->addTopic($id,$sujet,$description,$createur,$today['year'].'-'.$today['mon'].'-'.$today['mday'],$today['hours'].'h'.$today['minutes'],1);
-			$mm->addMessage(1,$message,$createur,$today['year'].'-'.$today['mon'].'-'.$today['mday'],$today['hours'].'h'.$today['minutes']);
+			$mm->addMessage($id,1,$message,$createur,$today['year'].'-'.$today['mon'].'-'.$today['mday'],$today['hours'].'h'.$today['minutes']);
 			header("Location: index.php?action=forum");
 		}
 
@@ -295,12 +295,8 @@
 						}
 					}
 			}
-			echo $ingredient[1];
-			echo $ingredient[2];
+			
 			$results = $rm -> rechercheRecetteIngredient($ingredient);
-			echo $results;
-			//foreach{}
-			echo $results['NOMRECETTE'][0];
 			require("View/recette.php");
 		}
 		else{

@@ -44,7 +44,7 @@
 			}
 			
 		}
-		$sql = 'INSERT INTO RecettePropose ( NOMRECETTE,'.$statement.', DEFINITION, DUREE, ORIGINE, IMAGE) values(?,?,'.$conditions.',?,?,?)';
+		$sql = 'INSERT INTO RecettePropose ( NOMRECETTE,'.$statement.', DEFINITION, DUREE, ORIGINE, IMAGE) values(?,'.$conditions.',?,?,?,?)';
 		$req = $this -> executerRequete($sql, array( $nom, $definition, $duree, $origine, $image));
 
 		}
