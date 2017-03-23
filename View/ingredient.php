@@ -82,21 +82,20 @@
 </form>
 
 <h2> Liste des ingredients </h2>
-<p> Tous les ingredients utilises dans les recettes sont ici !</p>
+<p> Tous les ingredients utilises dans les recettes sont ici, vous pouvez réaliser uen recherche de recette !</p>
    <ol class="rounded-list">
 <?php
 	//affiche les ingredients en fonction de la base de donnee d'ingredient
 	echo'<form action="index.php?action=ingredient" method="post">';
-	echo'<div class="touche">';
+	
 	foreach($results as $ingredient){ 
-			echo'<div id="coule">';
+			
 			echo '<div class="'.$ingredient['typeIngredient'].'"><li><a href="">'.$ingredient['NOMINGREDIENT'].'</a></li>';
-			echo '<input type="checkbox" name="recetteChoisi[]" value="'.$ingredient['IDINGREDIENT'].'">Cochez ici</div>';
+			echo '<input type="checkbox" name="recetteChoisi[]" value="'.$ingredient['IDINGREDIENT'].'">Cochez ici ';
 			if(isset($_SESSION['typeUtilisateur'])&& $_SESSION['typeUtilisateur'] == 'Admin')
-			echo '<button type="submit" name="effacerIngredient" value ="'.$ingredient['IDINGREDIENT'].'">Supprimez cet ingrédient</button>';
-		echo '</div>';
+			echo '<br><button type="submit" name="effacerIngredient" value ="'.$ingredient['IDINGREDIENT'].'">Supprimez cet ingrédient</button></div>';
+		
 	}
-	echo '</div>';
 	echo '
 	<div class="hot-container">
 				<p><input class="btn btn-blue" type="submit" name="rechercheRecette">
