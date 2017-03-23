@@ -7,6 +7,18 @@
 			$results = $req->fetchAll(PDO::FETCH_ASSOC);
 			return $results;
 		}
+		
+		function getRecetteConsult(){
+			$sql='SELECT * FROM Recette ORDER BY NBVISITE DESC LIMIT 3 ';
+			$req = $this -> executerRequete($sql);
+			$results = $req->fetchAll(PDO::FETCH_ASSOC);
+			return $results;
+		}
+		
+		function incrVisite($id){
+			$sql='UPDATE Recette SET NBVISITE = NBVISITE + 1 where IDRECETTE = :numrecette';
+			$req = $this -> executerRequete($sql,array('numrecette' => $id));
+		}
 
 		public function getRecetteDetail($recetteID)
 		{
@@ -77,8 +89,8 @@
 			}
 			
 		}
-		$sql = 'INSERT INTO Recette (NOMRECETTE,'.$statement.', DEFINITION, DUREE, ORIGINE, IMAGE) values(?,'.$conditions.',?,?,?,?)';
-		$req = $this -> executerRequete($sql, array( $nom, $definition, $duree, $origine, $image));
+		$sql = 'INSERT INTO Recette (NOMRECETTE,'.$statement.', DEFINITION, DUREE, ORIGINE, NBVISITE, IMAGE) values(?,'.$conditions.',?,?,?,?,?)';
+		$req = $this -> executerRequete($sql, array( $nom, $definition, $duree, $origine, 0, $image));
 
 		}
 		

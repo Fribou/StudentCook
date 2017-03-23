@@ -5,6 +5,17 @@
 	if (isset($_GET['action']) && $_GET["action"]=='confirmAjout') {
 		echo '<h3>Votre inscription a été validée, merci de faire partie de notre projet vous pouvez dés a present vous connecter et profitez des fonctionnalités de nos utilisateurs comme enregistrer vos liste de recette.</h3>';
 	}
+	echo '<div class="texte">Les recettes les plus cliqués</div><br>';
+	echo'<div id="cont">';
+	echo'<div id="inner">';
+	foreach($recetteConsult as $re){
+		echo'<div class="child">
+		 <p><img src="./'.$re['IMAGE'].'" alt="tortilla" width="200" /></p>
+		<p>'.$re['NOMRECETTE'].'</p>
+		</div>';
+	}
+	echo'</div>';
+	echo'</div>';
 
 	//affiche la liste de recette choisi
 	if(isset($_SESSION['arrayRecette']) && !empty($_SESSION['arrayRecette'])){
@@ -17,6 +28,7 @@
 					echo '<tr>';
 					echo '
 					<form action="index.php" method="post">
+					  <td><img src="./'. $recette['IMAGE'].'" alt="tortilla" width="200" /></td>
 					  <td>'.$recette['NOMRECETTE'].'</td>
 					  <td><a href='.'"index.php?recetteListeid='.$recette['IDRECETTE'].'#popup1">details de la recette</a></td>
 					</form>
@@ -54,6 +66,7 @@ if(isset($_SESSION['typeUtilisateur']) and $_SESSION['typeUtilisateur']=='Admin'
 			echo '<tr>';
 			echo '
 			<form action="index.php" method="post">
+			  <td><img src="./'. $recette['IMAGE'].'" alt="tortilla" width="200" /></td>
 			  <td>'.$recette['NOMRECETTE'].'</td>
 			  <td><a href='.'"index.php?recetteid='.$recette['IDRECETTE'].'#popup1">details de la recette</a></td>
 			  <td><button type="submit" name="ajoutRecettePropose" value="'.$recette['IDRECETTE'].'">Ajouter</button></td>

@@ -1,3 +1,22 @@
+/*/accueil*/
+#cont {
+  overflow: hidden;
+  width: 2000px;
+}
+
+#inner {
+	margin-left:370px ;
+  overflow: hidden;
+  width: 2000px;
+}
+
+.child {
+  float: left;
+  width: 300px;
+  height: 300px;
+}
+
+
 /*////////////////////////////////////// NTO //////////////////////*/
 
 body{

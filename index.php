@@ -81,6 +81,7 @@
 		$_SESSION['rechercheIngre'] = false;
 		// si utilisateur a choisi une recette pour sa liste de choix l'increment a un tableau avec tous ces choix
 		if(isset($_GET['incr'])){
+			 $rm -> incrVisite($_GET['incr']);
 			$_SESSION['arrayRecette'][] = $_GET['incr'];
 		}
 		// ajoute tous les ingredients a un tableau pour faciliter les requetes sql
@@ -161,7 +162,7 @@
 			}
 			else if(isset($_GET['recetteid']))
 			{
-
+				 $rm -> incrVisite($_GET['recetteid']);
 				$result = $rm -> getRecetteDetail($_GET['recetteid']);
 			}
 		}
@@ -344,7 +345,7 @@
 		if (isset($_GET['recetteListeid'])){
 			$detailPropose = $rm ->getRecetteDetail($_GET['recetteListeid']);
 		}
-
+		$recetteConsult = $rm -> getRecetteConsult();
 		$result = $rm -> getRecette();
 		require("View/accueil.php");
 	}
