@@ -87,12 +87,16 @@
 <?php
 	//affiche les ingredients en fonction de la base de donnee d'ingredient
 	echo'<form action="index.php?action=ingredient" method="post">';
-	foreach($results as $ingredient){
+	echo'<div class="touche">';
+	foreach($results as $ingredient){ 
+			echo'<div id="coule">';
 			echo '<div class="'.$ingredient['typeIngredient'].'"><li><a href="">'.$ingredient['NOMINGREDIENT'].'</a></li>';
 			echo '<input type="checkbox" name="recetteChoisi[]" value="'.$ingredient['IDINGREDIENT'].'">Cochez ici</div>';
 			if(isset($_SESSION['typeUtilisateur'])&& $_SESSION['typeUtilisateur'] == 'Admin')
 			echo '<button type="submit" name="effacerIngredient" value ="'.$ingredient['IDINGREDIENT'].'">Supprimez cet ingrédient</button>';
+		echo '</div>';
 	}
+	echo '</div>';
 	echo '
 	<div class="hot-container">
 				<p><input class="btn btn-blue" type="submit" name="rechercheRecette">
