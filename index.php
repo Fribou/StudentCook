@@ -78,6 +78,7 @@
 	//page recette affiche toute les recettes disponible
 	else if(isset($_GET['action']) && $_GET["action"]=='recette')
 	{
+		$_SESSION['rechercheIngre'] = false;
 		// si utilisateur a choisi une recette pour sa liste de choix l'increment a un tableau avec tous ces choix
 		if(isset($_GET['incr'])){
 			$_SESSION['arrayRecette'][] = $_GET['incr'];
@@ -245,23 +246,6 @@
 	}
 
 
-
-	//affiche page recette detail si erreur renvoie a page erreur
-/*	else if(isset($_GET['recetteid']))
-	{
-		if ($_GET['recetteid']=="")
-		{
-			$erreur='Identifiant de recette requis';
-			require("View/error.php");
-		}
-		else if(isset($_GET['recetteid']))
-		{
-			$results= $rm -> getRecette();
-			$result = $rm -> getRecetteDetail($_GET['recetteid']);
-			require("View/Recette.php");
-		}
-	}*/
-
 	// Affiche page  ajout recette
 	else if(isset($_GET['action']) && $_GET["action"]=='AjoutRecette'){
 		$results = $im -> getIngredient();
@@ -285,17 +269,42 @@
 
 	    if (isset($_POST['rechercheRecette'])){
 			$ingredient[] = array();
+			$_SESSION['rechercheIngredient'] = array();
+			$_SESSION['rechercheIngredient'][0] = null;
 			$N = count($_POST['recetteChoisi']);
 			$idingredient = $im ->getIngredient();
 			if(!empty($_POST['recetteChoisi'])){
 				foreach($idingredient as $id){
 					for($i=0;$i<$N;$i++){
-						if($_POST['recetteChoisi'][$i] == $id['IDINGREDIENT'])
+						if($_POST['recetteChoisi'][$i] == $id['IDINGREDIENT']){
+							$ingredient[] = $id['NOMINGREDIENT'];
+							$_SESSION['rechercheIngredient'][] = $id['NOMINGREDIENT'];
+						}
+					}
+				}
+			}
+			echo $ingredient[1];
+			echo $_SESSION['rechercheIngredient'][1];
+			$_SESSION['rechercheIngre'] = true;
+			$results = $rm -> rechercheRecetteIngredient($ingredient);
+			require("View/recette.php");
+		}
+		else if(isset($_GET['rechercheRecette'])){
+			$ingredient[] = array();
+			$N = count($_SESSION['rechercheIngredient']);
+			$idingredient = $im ->getIngredient();
+			if(!empty($_SESSION['rechercheIngredient'])){
+				foreach($idingredient as $id){
+					for($i=0;$i<$N;$i++){
+						if(is_array($_SESSION['rechercheIngredient']) && in_array($id['NOMINGREDIENT'], $_SESSION['rechercheIngredient'])){
 							$ingredient[] = $id['NOMINGREDIENT'];
 						}
 					}
+				}
 			}
-			
+			//echo $ingredient[1];
+			$_SESSION['rechercheIngre'] = true;
+			$result = $rm ->  getRecetteDetail($_GET['rechercheRecette']);
 			$results = $rm -> rechercheRecetteIngredient($ingredient);
 			require("View/recette.php");
 		}

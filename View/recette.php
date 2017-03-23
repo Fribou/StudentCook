@@ -68,7 +68,10 @@
 				echo '<tr>';
 				echo '<td><img src="./'. $donnees['IMAGE'].'" alt="tortilla" width="200" /></td>';
 				echo '<td>'.$donnees['NOMRECETTE'].'</td>';
-				echo '<td><a href='.'"index.php?action=recette&recetteid='.$donnees['IDRECETTE'].'#popup1">details de la recette</a></td>';
+				if(isset($_SESSION['rechercheIngredient']) && !empty($_SESSION['rechercheIngredient']))
+					echo '<td><a href='.'"index.php?action=ingredient&rechercheRecette='.$donnees['IDRECETTE'].'#popup1">details de la recette</a></td>';
+				else
+					echo '<td><a href='.'"index.php?action=recette&recetteid='.$donnees['IDRECETTE'].'#popup1">details de la recette</a></td>';
 				echo '<td><a href='.'"index.php?action=recette&incr='.$donnees['IDRECETTE'].'">Ajouter recette a votre liste</a></td>';
 				echo'<form action="index.php?action=recette" method="post">';
 				echo'<td><button type="submit" name="effacerRecette" value ="'.$donnees['IDRECETTE'].'">X</button></form></td>';

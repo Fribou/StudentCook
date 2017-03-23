@@ -93,7 +93,10 @@
 			if(isset($_SESSION['typeUtilisateur'])&& $_SESSION['typeUtilisateur'] == 'Admin')
 			echo '<button type="submit" name="effacerIngredient" value ="'.$ingredient['IDINGREDIENT'].'">X</button>';
 	}
-	echo '<input type="submit" name="rechercheRecette">';
+	echo '
+	<div class="hot-container">
+				<p><input class="btn btn-blue" type="submit" name="rechercheRecette">
+				</p></div>';
 	echo'</form>';
 	echo'</ol></div>';
 	$contenu=ob_get_clean();

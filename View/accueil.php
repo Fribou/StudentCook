@@ -11,7 +11,7 @@
 			echo '<div class="texte">Votre liste de recette choisi</div>';
 			//echo' <ol class="rounded-list">';
 			echo'<table class="table-fill">
-			<tbody class="table-hover">';
+			';
 			foreach($result as $recette){
 				if(in_array($recette['IDRECETTE'], $_SESSION['arrayRecette'])){
 					echo '<tr>';
